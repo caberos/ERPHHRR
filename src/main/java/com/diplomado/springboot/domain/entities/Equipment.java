@@ -2,6 +2,8 @@ package com.diplomado.springboot.domain.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Equipments")
 public class Equipment {
@@ -22,12 +24,17 @@ public class Equipment {
     @Column(name = "brand")
     private String brand;
 
-    public Equipment(Integer id, String name, String description, String type, String brand) {
+    @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL)
+    private List<Position> positions;
+
+    public Equipment(Integer id, String name, String description, String type, String brand,
+                     List<Position> positions) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.type = type;
         this.brand = brand;
+        this.positions = positions;
     }
 
     public Equipment() {
@@ -71,6 +78,14 @@ public class Equipment {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public List<Position> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(List<Position> positions) {
+        this.positions = positions;
     }
 }
 

@@ -1,10 +1,7 @@
 package com.diplomado.springboot.domain.entities;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -13,10 +10,13 @@ import java.time.LocalDateTime;
 public class Incidents {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "incident_id")
     private Integer incidentId;
-    @Column(name = "employee_ci")
-    private Integer employeeCI;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_ci")
+    private Employee employee;
 
     @Column(name = "description")
     private String description;
@@ -27,9 +27,10 @@ public class Incidents {
     @Column(name = "incident_date")
     private LocalDateTime incidentDate;
 
-    public Incidents(Integer incidentId, Integer employeeCI, String description, Integer level, LocalDateTime incidentDate) {
+    public Incidents(Integer incidentId, Employee employee, String description,
+                     Integer level, LocalDateTime incidentDate) {
         this.incidentId = incidentId;
-        this.employeeCI = employeeCI;
+        this.employee = employee;
         this.description = description;
         this.level = level;
         this.incidentDate = incidentDate;
@@ -46,12 +47,12 @@ public class Incidents {
         this.incidentId = incidentId;
     }
 
-    public Integer getEmployeeCI() {
-        return employeeCI;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeCI(Integer employeeCI) {
-        this.employeeCI = employeeCI;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public String getDescription() {

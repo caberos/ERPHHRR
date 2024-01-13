@@ -2,9 +2,11 @@ package com.diplomado.springboot.domain.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Table(name = "Departaments")
-public class Departament {
+@Table(name = "Departments")
+public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -16,13 +18,17 @@ public class Departament {
     @Column(name = "description")
     private String description;
 
-    public Departament(Integer id, String name, String description) {
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    private List<Position> positions;
+
+    public Department(Integer id, String name, String description, List<Position> positions) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.positions = positions;
     }
 
-    public Departament() {
+    public Department() {
     }
 
     public Integer getId() {
@@ -47,6 +53,14 @@ public class Departament {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Position> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(List<Position> positions) {
+        this.positions = positions;
     }
 }
 

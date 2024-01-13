@@ -1,9 +1,6 @@
 package com.diplomado.springboot.domain.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -12,11 +9,13 @@ import java.time.LocalDateTime;
 public class LicensesCertifications {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "licenses_id")
     private Integer licensesId;
 
-    @Column(name = "employee_ci")
-    private Integer employeeCI;
+    @ManyToOne
+    @JoinColumn(name = "employee_ci")
+    private Employee employee;
 
     @Column(name = "name")
     private String name;
@@ -24,9 +23,9 @@ public class LicensesCertifications {
     @Column(name = "expired")
     private LocalDateTime expired;
 
-    public LicensesCertifications(Integer licensesId, Integer employeeCI, String name, LocalDateTime expired) {
+    public LicensesCertifications(Integer licensesId, Employee employee, String name, LocalDateTime expired) {
         this.licensesId = licensesId;
-        this.employeeCI = employeeCI;
+        this.employee = employee;
         this.name = name;
         this.expired = expired;
     }
@@ -42,12 +41,12 @@ public class LicensesCertifications {
         this.licensesId = licensesId;
     }
 
-    public Integer getEmployeeCI() {
-        return employeeCI;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeCI(Integer employeeCI) {
-        this.employeeCI = employeeCI;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public String getName() {

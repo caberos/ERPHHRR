@@ -10,14 +10,9 @@ public class Position {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "employee_ci")
-    private Integer employeeCi;
-
-    @Column(name = "department_id")
-    private Integer departmentId;
-
-    @Column(name = "equipment_id")
-    private Integer equipmentId;
+    @ManyToOne
+    @JoinColumn(name = "employee_ci")
+    private Employee employee;
 
     @Column(name = "name")
     private String name;
@@ -28,15 +23,23 @@ public class Position {
     @Column(name = "salary")
     private Integer salary;
 
-    public Position(Integer id, Integer employeeCi,
-                    Integer departmentId, Integer equipmentId, String name, String description, Integer salary) {
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
+
+    @ManyToOne
+    @JoinColumn(name = "equipment_id")
+    private Equipment equipment;
+
+    public Position(Integer id, Employee employee, String name, String description, Integer salary,
+                    Department department, Equipment equipment) {
         this.id = id;
-        this.employeeCi = employeeCi;
-        this.departmentId = departmentId;
-        this.equipmentId = equipmentId;
+        this.employee = employee;
         this.name = name;
         this.description = description;
         this.salary = salary;
+        this.department = department;
+        this.equipment = equipment;
     }
 
     public Position() {
@@ -50,28 +53,12 @@ public class Position {
         this.id = id;
     }
 
-    public Integer getEmployeeCi() {
-        return employeeCi;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeCi(Integer employeeCi) {
-        this.employeeCi = employeeCi;
-    }
-
-    public Integer getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
-    }
-
-    public Integer getEquipmentId() {
-        return equipmentId;
-    }
-
-    public void setEquipmentId(Integer equipmentId) {
-        this.equipmentId = equipmentId;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public String getName() {
@@ -96,6 +83,22 @@ public class Position {
 
     public void setSalary(Integer salary) {
         this.salary = salary;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public Equipment getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
     }
 }
 
