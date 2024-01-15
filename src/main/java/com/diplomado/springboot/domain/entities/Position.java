@@ -14,15 +14,6 @@ public class Position {
     @JoinColumn(name = "employee_ci")
     private Employee employee;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "salary")
-    private Integer salary;
-
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
@@ -31,6 +22,14 @@ public class Position {
     @JoinColumn(name = "equipment_id")
     private Equipment equipment;
 
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "salary")
+    private Integer salary;
     public Position(Integer id, Employee employee, String name, String description, Integer salary,
                     Department department, Equipment equipment) {
         this.id = id;
