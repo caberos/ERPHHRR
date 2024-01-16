@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface ContactServices {
     List<ContactDTO> listContacts();
+    ContactDTO getContact(Integer id);
+    ContactDTO createContact(ContactDTO contact);
+    ContactDTO updateContact(Integer id, ContactDTO contact);
+    ContactDTO deleteContact(Integer id);
 }
