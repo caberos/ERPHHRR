@@ -1,33 +1,69 @@
 package com.diplomado.springboot.services.implement;
 
+import com.diplomado.springboot.domain.entities.Contact;
+import com.diplomado.springboot.domain.entities.Employee;
 import com.diplomado.springboot.dto.EmployeeDTO;
+import com.diplomado.springboot.repositories.EmployeeRepository;
 import com.diplomado.springboot.services.EmployeeServices;
+import com.diplomado.springboot.services.mapper.EmployeeMapper;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EmployeeServicesImplement implements EmployeeServices {
+
+    private final EmployeeMapper employeeMapper;
+    private final EmployeeRepository employeeRepository;
+
+    public EmployeeServicesImplement(EmployeeMapper employeeMapper,
+                                     EmployeeRepository employeeRepository) {
+        this.employeeMapper = employeeMapper;
+        this.employeeRepository = employeeRepository;
+    }
+
     @Override
     public List<EmployeeDTO> listEmployees() {
-        return null;
+        return this.employeeRepository.findAll()
+                .stream().map(employeeMapper::toDto).collect(Collectors.toList());
     }
 
     @Override
     public EmployeeDTO getEmployee(Integer id) {
-        return null;
+        List<Employee> employeeList = employeeRepository.findAll();
+        Employee res = new Employee();
+        for (Employee aux : employeeList) {
+            if (aux.getCi() == id) {
+                res = aux;
+                break;
+            }
+        }
+        return this.employeeMapper.toDto(res);
     }
 
     @Override
     public EmployeeDTO createEmployee(EmployeeDTO employee) {
-        return null;
+        return this.employeeMapper.toDto(
+                employeeRepository.save(this.employeeMapper.toEntity(employee)));
     }
 
     @Override
-    public EmployeeDTO updateEmployee(Integer id, EmployeeDTO employee) {
-        return null;
+    public EmployeeDTO updateEmployee(Integer id, EmployeeDTO employeeDTO) {
+        Employee employee = employeeRepository.getReferenceById(id);
+        employeeRepository.save(employeeMapper.toUpdate(employee,employeeMapper.toEntity(employeeDTO)));
+        return employeeDTO;
     }
 
     @Override
     public EmployeeDTO deleteEmployee(Integer id) {
-        return null;
+        List<Employee> employeeList = employeeRepository.findAll();
+        Employee res = new Employee();
+        for (Employee aux : employeeList) {
+            if (aux.getCi() == id) {
+                res = aux;
+                employeeRepository.deleteById(id);
+                break;
+            }
+        }
+        return this.employeeMapper.toDto(res);
     }
 }
