@@ -47,12 +47,12 @@ public class AccomplishServicesImplement implements AccomplishmentsServices {
     }
 
     @Override
-    public AccomplishmentDTO updateAccomplishment(Integer id, AccomplishmentDTO accomplishment) {
+    public AccomplishmentDTO updateAccomplishment(Integer id, AccomplishmentDTO accomplishmentDTO) {
         Accomplishments accomplishments = accomplishmentsRepository.getReferenceById(id);
-        accomplishments.setAccomplishmentId(accomplishment.getAccomplishmentId());
-        accomplishments.setAccomplishmentDate(accomplishment.getAccomplishmentDate());
-        accomplishments.setDescription(accomplishment.getDescription());
-        accomplishments.setEmployee(accomplishment.getEmployee());
+        accomplishments.setAccomplishmentId(accomplishmentDTO.getAccomplishmentId());
+        accomplishments.setAccomplishmentDate(accomplishmentDTO.getAccomplishmentDate());
+        accomplishments.setDescription(accomplishmentDTO.getDescription());
+        accomplishments.setEmployee(accomplishmentDTO.getEmployee());
         accomplishmentsRepository.save(accomplishments);
         return this.accomplishmentMapper.toDto(accomplishments);
 
