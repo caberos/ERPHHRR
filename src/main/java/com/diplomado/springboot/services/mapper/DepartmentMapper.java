@@ -2,7 +2,9 @@ package com.diplomado.springboot.services.mapper;
 
 import com.diplomado.springboot.domain.entities.Department;
 import com.diplomado.springboot.dto.DepartmentDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DepartmentMapper implements CustomMapper<DepartmentDTO, Department> {
     @Override
     public DepartmentDTO toDto(Department department) {

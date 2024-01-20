@@ -2,7 +2,9 @@ package com.diplomado.springboot.services.mapper;
 
 import com.diplomado.springboot.domain.entities.Incidents;
 import com.diplomado.springboot.dto.IncidentsDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class IncidentsMapper implements  CustomMapper<IncidentsDTO, Incidents>{
     @Override
     public IncidentsDTO toDto(Incidents incidents) {

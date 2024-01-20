@@ -1,15 +1,16 @@
 package com.diplomado.springboot.services.implement;
 
-import com.diplomado.springboot.domain.entities.Evaluation;
 import com.diplomado.springboot.domain.entities.Position;
 import com.diplomado.springboot.dto.PositionDTO;
 import com.diplomado.springboot.repositories.PositionRepository;
 import com.diplomado.springboot.services.PositionServices;
 import com.diplomado.springboot.services.mapper.PositionMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class PositionServicesImplement implements PositionServices {
     private final PositionMapper positionMapper;
     private final PositionRepository positionRepository;
@@ -47,7 +48,7 @@ public class PositionServicesImplement implements PositionServices {
 
     @Override
     public PositionDTO updatePosition(Integer id, PositionDTO positionDTO) {
-        Position position = positionRepository.getReferenceById(id);
+        Position position = positionRepository.getReferenceById(Long.valueOf(id));
         position.setId(positionDTO.getId());
         position.setName(positionDTO.getName());
         position.setDepartment(positionDTO.getDepartment());
@@ -66,7 +67,7 @@ public class PositionServicesImplement implements PositionServices {
         for (Position aux : positionList) {
             if (aux.getId() == id) {
                 res = aux;
-                positionRepository.deleteById(id);
+                positionRepository.deleteById(Long.valueOf(id));
                 break;
             }
         }

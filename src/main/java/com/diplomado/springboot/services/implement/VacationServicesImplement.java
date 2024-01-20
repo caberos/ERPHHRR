@@ -5,10 +5,12 @@ import com.diplomado.springboot.dto.VacationDTO;
 import com.diplomado.springboot.repositories.VacationsRepository;
 import com.diplomado.springboot.services.VacationsServices;
 import com.diplomado.springboot.services.mapper.VacationsMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class VacationServicesImplement implements VacationsServices {
 
     private final VacationsRepository vacationsRepository;
@@ -47,7 +49,7 @@ public class VacationServicesImplement implements VacationsServices {
 
     @Override
     public VacationDTO updateVacations(Integer id, VacationDTO vacation) {
-        Vacations vacations = vacationsRepository.getReferenceById(id);
+        Vacations vacations = vacationsRepository.getReferenceById(Long.valueOf(id));
         vacations.setVacationId(vacation.getVacationId());
         vacations.setDuration(vacation.getDuration());
         vacations.setEmployee(vacation.getEmployee());
@@ -65,7 +67,7 @@ public class VacationServicesImplement implements VacationsServices {
         for (Vacations aux : vacationsList) {
             if (aux.getVacationId() == id) {
                 res = aux;
-                vacationsRepository.deleteById(id);
+                vacationsRepository.deleteById(Long.valueOf(id));
                 break;
             }
         }

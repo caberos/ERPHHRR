@@ -6,10 +6,12 @@ import com.diplomado.springboot.dto.EquipmentDTO;
 import com.diplomado.springboot.repositories.EquipmentRepository;
 import com.diplomado.springboot.services.EquipmentServices;
 import com.diplomado.springboot.services.mapper.EquipmentMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class EquipmentServicesImplement implements EquipmentServices {
 
     private final EquipmentRepository equipmentRepository;
@@ -48,7 +50,7 @@ public class EquipmentServicesImplement implements EquipmentServices {
 
     @Override
     public EquipmentDTO updateEquipment(Integer id, EquipmentDTO equipmentDTO) {
-        Equipment equipment = equipmentRepository.getReferenceById(id);
+        Equipment equipment = equipmentRepository.getReferenceById(Long.valueOf(id));
         equipment.setId(equipmentDTO.getId());
         equipment.setBrand(equipmentDTO.getBrand());
         equipment.setDescription(equipmentDTO.getDescription());
@@ -66,7 +68,7 @@ public class EquipmentServicesImplement implements EquipmentServices {
         for (Equipment aux : equipmentList) {
             if (aux.getId() == id) {
                 res = aux;
-                equipmentRepository.deleteById(id);
+                equipmentRepository.deleteById(Long.valueOf(id));
                 break;
             }
         }

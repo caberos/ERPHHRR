@@ -2,7 +2,9 @@ package com.diplomado.springboot.services.mapper;
 
 import com.diplomado.springboot.domain.entities.LaborHistory;
 import com.diplomado.springboot.dto.LaborHistoryDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class LaborHistoryMapper implements CustomMapper<LaborHistoryDTO, LaborHistory>{
     @Override
     public LaborHistoryDTO toDto(LaborHistory laborHistory) {

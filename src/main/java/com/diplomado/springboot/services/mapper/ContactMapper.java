@@ -2,7 +2,9 @@ package com.diplomado.springboot.services.mapper;
 
 import com.diplomado.springboot.domain.entities.Contact;
 import com.diplomado.springboot.dto.ContactDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ContactMapper implements CustomMapper<ContactDTO, Contact>{
     @Override
     public ContactDTO toDto(Contact contact) {

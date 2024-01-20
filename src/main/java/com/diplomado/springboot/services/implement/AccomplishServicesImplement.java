@@ -6,10 +6,12 @@ import com.diplomado.springboot.dto.AccomplishmentDTO;
 import com.diplomado.springboot.repositories.AccomplishmentsRepository;
 import com.diplomado.springboot.services.AccomplishmentsServices;
 import com.diplomado.springboot.services.mapper.AccomplishmentMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class AccomplishServicesImplement implements AccomplishmentsServices {
 
     private final AccomplishmentsRepository accomplishmentsRepository;
@@ -48,7 +50,7 @@ public class AccomplishServicesImplement implements AccomplishmentsServices {
 
     @Override
     public AccomplishmentDTO updateAccomplishment(Integer id, AccomplishmentDTO accomplishmentDTO) {
-        Accomplishments accomplishments = accomplishmentsRepository.getReferenceById(id);
+        Accomplishments accomplishments = accomplishmentsRepository.getReferenceById(Long.valueOf(id));
         accomplishments.setAccomplishmentId(accomplishmentDTO.getAccomplishmentId());
         accomplishments.setAccomplishmentDate(accomplishmentDTO.getAccomplishmentDate());
         accomplishments.setDescription(accomplishmentDTO.getDescription());
@@ -65,7 +67,7 @@ public class AccomplishServicesImplement implements AccomplishmentsServices {
         for (Accomplishments aux : accomplishmentsList) {
             if (aux.getAccomplishmentId() == id) {
                 res = aux;
-                accomplishmentsRepository.deleteById(id);
+                accomplishmentsRepository.deleteById(Long.valueOf(id));
                 break;
             }
         }

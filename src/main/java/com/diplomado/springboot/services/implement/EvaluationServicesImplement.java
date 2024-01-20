@@ -6,10 +6,12 @@ import com.diplomado.springboot.dto.EvaluationDTO;
 import com.diplomado.springboot.repositories.EvaluationRepository;
 import com.diplomado.springboot.services.EvaluationServices;
 import com.diplomado.springboot.services.mapper.EvaluationMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class EvaluationServicesImplement implements EvaluationServices {
 
     private final EvaluationMapper evaluationMapper;
@@ -48,7 +50,7 @@ public class EvaluationServicesImplement implements EvaluationServices {
 
     @Override
     public EvaluationDTO updateEvaluation(Integer id, EvaluationDTO evaluationDTO) {
-        Evaluation evaluation = evaluationRepository.getReferenceById(id);
+        Evaluation evaluation = evaluationRepository.getReferenceById(Long.valueOf(id));
         evaluation.setEvaluationId(evaluationDTO.getEvaluationId());
         evaluation.setComments(evaluationDTO.getComments());
         evaluation.setEmployee(evaluationDTO.getEmployee());
@@ -67,7 +69,7 @@ public class EvaluationServicesImplement implements EvaluationServices {
         for (Evaluation aux : evaluationList) {
             if (aux.getEvaluationId() == id) {
                 res = aux;
-                evaluationRepository.deleteById(id);
+                evaluationRepository.deleteById(Long.valueOf(id));
                 break;
             }
         }

@@ -1,15 +1,16 @@
 package com.diplomado.springboot.services.implement;
 
-import com.diplomado.springboot.domain.entities.Position;
 import com.diplomado.springboot.domain.entities.Training;
 import com.diplomado.springboot.dto.TrainingDTO;
 import com.diplomado.springboot.repositories.TrainingRepository;
 import com.diplomado.springboot.services.TrainingServices;
 import com.diplomado.springboot.services.mapper.TrainingMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class TrainingServicesImplement implements TrainingServices {
     private final TrainingMapper trainingMapper;
     private final TrainingRepository trainingRepository;
@@ -47,7 +48,7 @@ public class TrainingServicesImplement implements TrainingServices {
 
     @Override
     public TrainingDTO updateTraining(Integer id, TrainingDTO trainingDTO) {
-        Training training = trainingRepository.getReferenceById(id);
+        Training training = trainingRepository.getReferenceById(Long.valueOf(id));
         training.setTrainingId(trainingDTO.getTrainingId());
         training.setName(trainingDTO.getName());
         training.setEmployee(trainingDTO.getEmployee());
@@ -66,7 +67,7 @@ public class TrainingServicesImplement implements TrainingServices {
         for (Training aux : trainingList) {
             if (aux.getTrainingId() == id) {
                 res = aux;
-                trainingRepository.deleteById(id);
+                trainingRepository.deleteById(Long.valueOf(id));
                 break;
             }
         }

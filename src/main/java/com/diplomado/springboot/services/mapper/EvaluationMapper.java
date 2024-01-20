@@ -2,7 +2,9 @@ package com.diplomado.springboot.services.mapper;
 
 import com.diplomado.springboot.domain.entities.Evaluation;
 import com.diplomado.springboot.dto.EvaluationDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EvaluationMapper implements CustomMapper<EvaluationDTO, Evaluation>{
     @Override
     public EvaluationDTO toDto(Evaluation evaluation) {

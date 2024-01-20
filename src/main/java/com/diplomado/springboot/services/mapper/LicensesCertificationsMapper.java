@@ -2,7 +2,9 @@ package com.diplomado.springboot.services.mapper;
 
 import com.diplomado.springboot.domain.entities.LicensesCertifications;
 import com.diplomado.springboot.dto.LicensesCertificationsDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class LicensesCertificationsMapper implements CustomMapper<LicensesCertificationsDTO, LicensesCertifications>{
     @Override
     public LicensesCertificationsDTO toDto(LicensesCertifications licensesCertifications) {

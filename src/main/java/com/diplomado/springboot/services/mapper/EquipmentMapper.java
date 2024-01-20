@@ -2,7 +2,9 @@ package com.diplomado.springboot.services.mapper;
 
 import com.diplomado.springboot.domain.entities.Equipment;
 import com.diplomado.springboot.dto.EquipmentDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EquipmentMapper implements CustomMapper<EquipmentDTO, Equipment>{
     @Override
     public EquipmentDTO toDto(Equipment equipment) {

@@ -2,7 +2,9 @@ package com.diplomado.springboot.services.mapper;
 
 import com.diplomado.springboot.domain.entities.Accomplishments;
 import com.diplomado.springboot.dto.AccomplishmentDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AccomplishmentMapper implements CustomMapper<AccomplishmentDTO, Accomplishments> {
 
     @Override

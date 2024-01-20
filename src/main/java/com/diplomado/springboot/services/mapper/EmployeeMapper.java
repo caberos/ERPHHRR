@@ -2,7 +2,9 @@ package com.diplomado.springboot.services.mapper;
 
 import com.diplomado.springboot.domain.entities.Employee;
 import com.diplomado.springboot.dto.EmployeeDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EmployeeMapper implements CustomMapper<EmployeeDTO, Employee>{
     @Override
     public EmployeeDTO toDto(Employee employee) {

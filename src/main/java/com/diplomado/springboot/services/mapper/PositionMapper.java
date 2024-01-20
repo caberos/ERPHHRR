@@ -2,7 +2,9 @@ package com.diplomado.springboot.services.mapper;
 
 import com.diplomado.springboot.domain.entities.Position;
 import com.diplomado.springboot.dto.PositionDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PositionMapper implements CustomMapper<PositionDTO, Position>{
     @Override
     public PositionDTO toDto(Position position) {

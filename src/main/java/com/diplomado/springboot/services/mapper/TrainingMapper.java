@@ -2,7 +2,9 @@ package com.diplomado.springboot.services.mapper;
 
 import com.diplomado.springboot.domain.entities.Training;
 import com.diplomado.springboot.dto.TrainingDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TrainingMapper implements CustomMapper<TrainingDTO, Training>{
     @Override
     public TrainingDTO toDto(Training training) {

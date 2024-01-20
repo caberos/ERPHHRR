@@ -2,7 +2,9 @@ package com.diplomado.springboot.services.mapper;
 
 import com.diplomado.springboot.domain.entities.Vacations;
 import com.diplomado.springboot.dto.VacationDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class VacationsMapper implements  CustomMapper<VacationDTO, Vacations>{
     @Override
     public VacationDTO toDto(Vacations vacations) {

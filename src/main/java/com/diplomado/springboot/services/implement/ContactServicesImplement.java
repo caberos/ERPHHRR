@@ -6,10 +6,12 @@ import com.diplomado.springboot.dto.ContactDTO;
 import com.diplomado.springboot.repositories.ContactRepository;
 import com.diplomado.springboot.services.ContactServices;
 import com.diplomado.springboot.services.mapper.ContactMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ContactServicesImplement implements ContactServices {
 
     private final ContactMapper contactMapper;
@@ -47,7 +49,7 @@ public class ContactServicesImplement implements ContactServices {
 
     @Override
     public ContactDTO updateContact(Integer id, ContactDTO contactDTO) {
-        Contact contact = contactRepository.getReferenceById(id);
+        Contact contact = contactRepository.getReferenceById(Long.valueOf(id));
         contact.setContactId(contactDTO.getContactId());
         contact.setName(contactDTO.getName());
         contact.setAddress(contactDTO.getAddress());
@@ -65,7 +67,7 @@ public class ContactServicesImplement implements ContactServices {
         for (Contact aux : contactList) {
             if (aux.getContactId() == id) {
                 res = aux;
-                contactRepository.deleteById(id);
+                contactRepository.deleteById(Long.valueOf(id));
                 break;
             }
         }

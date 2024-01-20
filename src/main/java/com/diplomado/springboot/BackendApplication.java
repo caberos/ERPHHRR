@@ -6,35 +6,33 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Optional;
 
-@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
+@SpringBootApplication(scanBasePackages = "com.diplomado.springboot")
 public class BackendApplication {
     private static final Logger log = LoggerFactory.getLogger(BackendApplication.class);
 
     public static void main(String[] args) {
-        SpringApplication springApplication = new SpringApplication(BackendApplication.class);
-        logApplicationStartup(springApplication.run(args).getEnvironment());
+        ConfigurableApplicationContext context = SpringApplication.run(BackendApplication.class, args);
+        logApplicationStartup(context.getEnvironment());
     }
 
     public static void logApplicationStartup(Environment env) {
-        String protocol = Optional.ofNullable(env.getProperty("server.ssl.store"))
-                .map(key -> "https")
-                .orElse("http");
+        String protocol = Optional.ofNullable(env.getProperty("server.ssl.store")).map(key -> "https").orElse("http");
         String serverPort = env.getProperty("server.port");
-        String path = Optional.ofNullable(env.getProperty("server.servlet.path"))
-                .filter(StringUtils::isNotBlank)
-                .orElse("/");
-        String host = "localhost";
+        String path = Optional.ofNullable(env.getProperty("server.servlet.path")).filter(StringUtils::isNotBlank).orElse("/");
+        String host;
 
         try {
-            host = InetAddress.getLocalHost().getHostAddress();
+            host = InetAddress.getLocalHost().getHostName();
         } catch (UnknownHostException e) {
-            log.warn("Falling determined the hostname");
+            log.warn("Unable to determine the hostname");
+            host = "localhost";
         }
 
         log.info(
@@ -55,5 +53,3 @@ public class BackendApplication {
         );
     }
 }
-
-

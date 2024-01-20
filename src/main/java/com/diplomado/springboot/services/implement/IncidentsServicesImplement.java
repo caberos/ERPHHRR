@@ -1,15 +1,16 @@
 package com.diplomado.springboot.services.implement;
 
-import com.diplomado.springboot.domain.entities.Evaluation;
 import com.diplomado.springboot.domain.entities.Incidents;
 import com.diplomado.springboot.dto.IncidentsDTO;
 import com.diplomado.springboot.repositories.IncidentsRepository;
 import com.diplomado.springboot.services.IncidentsServices;
 import com.diplomado.springboot.services.mapper.IncidentsMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class IncidentsServicesImplement implements IncidentsServices {
 
     private final IncidentsMapper incidentsMapper;
@@ -48,7 +49,7 @@ public class IncidentsServicesImplement implements IncidentsServices {
 
     @Override
     public IncidentsDTO updateIncident(Integer id, IncidentsDTO incidentsDTO) {
-        Incidents incidents = incidentsRepository.getReferenceById(id);
+        Incidents incidents = incidentsRepository.getReferenceById(Long.valueOf(id));
         incidents.setIncidentId(incidentsDTO.getIncidentId());
         incidents.setIncidentDate(incidentsDTO.getIncidentDate());
         incidents.setEmployee(incidentsDTO.getEmployee());
@@ -65,7 +66,7 @@ public class IncidentsServicesImplement implements IncidentsServices {
         for (Incidents aux : incidentsList) {
             if (aux.getIncidentId() == id) {
                 res = aux;
-                incidentsRepository.deleteById(id);
+                incidentsRepository.deleteById(Long.valueOf(id));
                 break;
             }
         }

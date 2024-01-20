@@ -6,9 +6,11 @@ import com.diplomado.springboot.dto.DepartmentDTO;
 import com.diplomado.springboot.repositories.DepartmentRepository;
 import com.diplomado.springboot.services.DepartmentServices;
 import com.diplomado.springboot.services.mapper.DepartmentMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class DepartmentServicesImplement implements DepartmentServices {
 
     private final DepartmentMapper departmentMapper;
@@ -47,7 +49,7 @@ public class DepartmentServicesImplement implements DepartmentServices {
 
     @Override
     public DepartmentDTO updateDepartment(Integer id, DepartmentDTO departmentDTO) {
-        Department department = departmentRepository.getReferenceById(id);
+        Department department = departmentRepository.getReferenceById(Long.valueOf(id));
         department.setId(departmentDTO.getId());
         department.setName(departmentDTO.getName());
         department.setDescription(departmentDTO.getDescription());
@@ -63,7 +65,7 @@ public class DepartmentServicesImplement implements DepartmentServices {
         for (Department aux : departmentList) {
             if (aux.getId() == id) {
                 res = aux;
-                departmentRepository.deleteById(id);
+                departmentRepository.deleteById(Long.valueOf(id));
                 break;
             }
         }

@@ -1,16 +1,16 @@
 package com.diplomado.springboot.services.implement;
 
-import com.diplomado.springboot.domain.entities.Evaluation;
-import com.diplomado.springboot.domain.entities.Incidents;
 import com.diplomado.springboot.domain.entities.LaborHistory;
 import com.diplomado.springboot.dto.LaborHistoryDTO;
 import com.diplomado.springboot.repositories.LaborHistoryRepository;
 import com.diplomado.springboot.services.LaborHistoryServices;
 import com.diplomado.springboot.services.mapper.LaborHistoryMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class LaborHistoryServicesImplement implements LaborHistoryServices {
 
     private final LaborHistoryMapper laborHistoryMapper;
@@ -49,7 +49,7 @@ public class LaborHistoryServicesImplement implements LaborHistoryServices {
 
     @Override
     public LaborHistoryDTO updateLaborHistory(Integer id, LaborHistoryDTO laborHistoryDTO) {
-        LaborHistory laborHistory = laborHistoryRepository.getReferenceById(id);
+        LaborHistory laborHistory = laborHistoryRepository.getReferenceById(Long.valueOf(id));
         laborHistory.setHistoryId(laborHistoryDTO.getHistoryId());
         laborHistory.setEmployee(laborHistoryDTO.getEmployee());
         laborHistory.setDescription(laborHistoryDTO.getDescription());
@@ -67,7 +67,7 @@ public class LaborHistoryServicesImplement implements LaborHistoryServices {
         for (LaborHistory aux : laborHistories) {
             if (aux.getHistoryId() == id) {
                 res = aux;
-                laborHistoryRepository.deleteById(id);
+                laborHistoryRepository.deleteById(Long.valueOf(id));
                 break;
             }
         }

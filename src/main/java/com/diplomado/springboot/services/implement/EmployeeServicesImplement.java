@@ -6,10 +6,12 @@ import com.diplomado.springboot.dto.EmployeeDTO;
 import com.diplomado.springboot.repositories.EmployeeRepository;
 import com.diplomado.springboot.services.EmployeeServices;
 import com.diplomado.springboot.services.mapper.EmployeeMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class EmployeeServicesImplement implements EmployeeServices {
 
     private final EmployeeMapper employeeMapper;
@@ -48,7 +50,7 @@ public class EmployeeServicesImplement implements EmployeeServices {
 
     @Override
     public EmployeeDTO updateEmployee(Integer id, EmployeeDTO employeeDTO) {
-        Employee employee = employeeRepository.getReferenceById(id);
+        Employee employee = employeeRepository.getReferenceById(Long.valueOf(id));
         employeeRepository.save(employeeMapper.toUpdate(employee,employeeMapper.toEntity(employeeDTO)));
         return employeeDTO;
     }
@@ -60,7 +62,7 @@ public class EmployeeServicesImplement implements EmployeeServices {
         for (Employee aux : employeeList) {
             if (aux.getCi() == id) {
                 res = aux;
-                employeeRepository.deleteById(id);
+                employeeRepository.deleteById(Long.valueOf(id));
                 break;
             }
         }
