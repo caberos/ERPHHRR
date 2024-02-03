@@ -8,6 +8,7 @@ import com.diplomado.springboot.services.AccomplishmentsServices;
 import com.diplomado.springboot.services.mapper.AccomplishmentMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +28,18 @@ public class AccomplishServicesImplement implements AccomplishmentsServices {
     public List<AccomplishmentDTO> listAccomplishment() {
         return accomplishmentsRepository.findAll()
                 .stream().map(accomplishmentMapper::toDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AccomplishmentDTO> listAccomplishmentByEmployeeID(Integer employeeId) {
+        List<Accomplishments> accomplishmentsList = accomplishmentsRepository.findAll();
+        List<AccomplishmentDTO> res = new ArrayList<>();
+        for (Accomplishments aux : accomplishmentsList) {
+            if (aux.getEmployee().getId() == employeeId) {
+                res.add(accomplishmentMapper.toDto(aux)) ;
+            }
+        }
+        return res;
     }
 
     @Override

@@ -1,0 +1,44 @@
+.employeeSearch {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.employeeSearch__form input {
+  margin: 0 auto;
+  background-color: transparent;
+  border: transparent;
+  border-bottom: solid 2px #34495e;
+  padding-bottom: 8px;
+  width: 60%;
+  font-weight: 200;
+  font-family: cursive;
+  letter-spacing: 2px;
+  font-size: 16px;
+  color: cornflowerblue;
+
+  margin-left: 400px;
+}
+.employeeSearch__form input::placeholder {
+  color: cornflowerblue;
+  font-family: cursive;
+}
+
+.employeeSearch__form input:focus {
+  outline: none;
+}
+
+.employeeSearch__form button {
+  border: 0;
+  width: 7%;
+  position: absolute;
+  top: 4px;
+  background: transparent;
+  border: solid 2px #34495e;
+  color: #fff;
+  display: flex;
+}
+.employeeSearch__form button:hover {
+  background: #34495e;
+}

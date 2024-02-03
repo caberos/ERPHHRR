@@ -27,8 +27,13 @@ public class AccomplishmentController {
     }
 
     @GetMapping(path = "/get/{id}")
-    public AccomplishmentDTO getAccomplishment(@PathVariable("id") Integer rolId) {
-        return accomplishmentsServices.getAccomplishment(rolId);
+    public AccomplishmentDTO getAccomplishment(@PathVariable("id") Integer id) {
+        return accomplishmentsServices.getAccomplishment(id);
+    }
+
+    @GetMapping(path = "/getAllByEmployeeId/{id}")
+    public List<AccomplishmentDTO>  getAccomplishmentByEmpId(@PathVariable("id") Integer employeeId) {
+        return accomplishmentsServices.listAccomplishmentByEmployeeID(employeeId);
     }
 
     @PostMapping(path = "/create")

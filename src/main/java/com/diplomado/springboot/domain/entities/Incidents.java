@@ -1,6 +1,7 @@
 package com.diplomado.springboot.domain.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -15,7 +16,8 @@ public class Incidents {
     private Integer incidentId;
 
     @ManyToOne
-    @JoinColumn(name = "employee_ci")
+    @JoinColumn(name = "employee_id")
+    @JsonIgnore
     private Employee employee;
 
     @Column(name = "description")

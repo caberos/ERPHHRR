@@ -1,11 +1,12 @@
 package com.diplomado.springboot.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Licenses_Certifications")
+@Table(name = "licenses_Certifications")
 public class LicensesCertifications {
 
     @Id
@@ -14,7 +15,8 @@ public class LicensesCertifications {
     private Integer licensesId;
 
     @ManyToOne
-    @JoinColumn(name = "employee_ci")
+    @JoinColumn(name = "employee_id")
+    @JsonIgnore
     private Employee employee;
 
     @Column(name = "name")

@@ -1,9 +1,10 @@
 package com.diplomado.springboot.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Positions")
+@Table(name = "positions")
 public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,15 +12,18 @@ public class Position {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "employee_ci")
+    @JoinColumn(name = "employee_id")
+    @JsonIgnore
     private Employee employee;
 
     @ManyToOne
     @JoinColumn(name = "department_id")
+    @JsonIgnore
     private Department department;
 
     @ManyToOne
     @JoinColumn(name = "equipment_id")
+    @JsonIgnore
     private Equipment equipment;
 
     @Column(name = "name")

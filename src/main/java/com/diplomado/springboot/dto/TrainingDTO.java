@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
 @Getter
@@ -14,6 +17,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class TrainingDTO {
     private Integer trainingId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_id")
     private Employee employee;
     private String name;
     private String type;

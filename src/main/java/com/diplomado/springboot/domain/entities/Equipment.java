@@ -1,11 +1,12 @@
 package com.diplomado.springboot.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
-@Table(name = "Equipments")
+@Table(name = "equipment")
 public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +25,7 @@ public class Equipment {
     @Column(name = "brand")
     private String brand;
 
-    @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "equipment")
     private List<Position> positions;
 
     public Equipment(Integer id, String name, String description, String type, String brand,

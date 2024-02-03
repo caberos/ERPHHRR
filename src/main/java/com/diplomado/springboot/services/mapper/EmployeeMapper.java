@@ -9,7 +9,7 @@ public class EmployeeMapper implements CustomMapper<EmployeeDTO, Employee>{
     @Override
     public EmployeeDTO toDto(Employee employee) {
         EmployeeDTO employeeDTO = new EmployeeDTO();
-        employeeDTO.setCi(employee.getCi());
+        employeeDTO.setId(employee.getId());
         employeeDTO.setName(employee.getName());
         employeeDTO.setCity(employee.getCity());
         employeeDTO.setPassword(employee.getPassword());
@@ -33,7 +33,7 @@ public class EmployeeMapper implements CustomMapper<EmployeeDTO, Employee>{
     @Override
     public Employee toEntity(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
-        employee.setCi(employeeDTO.getCi());
+        employee.setId(employeeDTO.getId());
         employee.setName(employeeDTO.getName());
         employee.setCity(employeeDTO.getCity());
         employee.setPassword(employeeDTO.getPassword());
@@ -55,7 +55,7 @@ public class EmployeeMapper implements CustomMapper<EmployeeDTO, Employee>{
     }
 
     public Employee toUpdate(Employee employee,Employee employeeDTO) {
-        employee.setCi(employeeDTO.getCi());
+        employee.setId(employeeDTO.getId());
         employee.setName(employeeDTO.getName());
         employee.setCity(employeeDTO.getCity());
         employee.setPassword(employeeDTO.getPassword());

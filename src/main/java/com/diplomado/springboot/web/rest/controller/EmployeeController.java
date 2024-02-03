@@ -33,6 +33,7 @@ public class EmployeeController {
 
     @PostMapping(path = "/create")
     public ResponseEntity<EmployeeDTO> createEmployee(@Valid @RequestBody EmployeeDTO employeeDTO) throws URISyntaxException {
+        System.out.println(employeeDTO);
         if (employeeDTO == null) {
             throw new ApiRequestException("Invalid input data. Please check the provided information.");
         }

@@ -1,6 +1,5 @@
 package com.diplomado.springboot.services.implement;
 
-import com.diplomado.springboot.domain.entities.Contact;
 import com.diplomado.springboot.domain.entities.Employee;
 import com.diplomado.springboot.dto.EmployeeDTO;
 import com.diplomado.springboot.repositories.EmployeeRepository;
@@ -34,7 +33,7 @@ public class EmployeeServicesImplement implements EmployeeServices {
         List<Employee> employeeList = employeeRepository.findAll();
         Employee res = new Employee();
         for (Employee aux : employeeList) {
-            if (aux.getCi() == id) {
+            if (aux.getId() == id) {
                 res = aux;
                 break;
             }
@@ -44,6 +43,7 @@ public class EmployeeServicesImplement implements EmployeeServices {
 
     @Override
     public EmployeeDTO createEmployee(EmployeeDTO employee) {
+        System.out.println(employee);
         return this.employeeMapper.toDto(
                 employeeRepository.save(this.employeeMapper.toEntity(employee)));
     }
@@ -60,7 +60,7 @@ public class EmployeeServicesImplement implements EmployeeServices {
         List<Employee> employeeList = employeeRepository.findAll();
         Employee res = new Employee();
         for (Employee aux : employeeList) {
-            if (aux.getCi() == id) {
+            if (aux.getId() == id) {
                 res = aux;
                 employeeRepository.deleteById(Long.valueOf(id));
                 break;

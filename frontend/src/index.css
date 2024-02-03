@@ -1,0 +1,174 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #4d4d70;
+}
+
+.header,
+.footer {
+  background: #449c9c;
+  height: 75px;
+  text-align: center;
+  display: flex-end;
+  border-style: solid;
+  border-color: yellowgreen;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+}
+
+.drawer {
+  background: rgb(99, 99, 114);
+  width: 240px;
+  color: aqua;
+  size-adjust: 20px;
+}
+
+.main {
+  flex: 1;
+  background: rgb(187, 44, 44);
+  color: #d8dcd6;
+}
+
+.home {
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 700px; /* You must set a specified height */
+  margin-left: 200px;
+  margin-top: 0px;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.Employee-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  margin-left: 200px;
+}
+
+.Employee-card {
+  border-radius: 6px;
+  background: white;
+  position: sticky;
+  margin: 2rem;
+  width: 400px;
+  display: flex;
+  box-shadow: 0px 8px 20px 0px rgb(0 0 0 / 5%);
+}
+
+.Employee-card > div > h3 {
+  color: cornflowerblue;
+  padding: 0.5rem;
+  font-family: Courgette;
+}
+
+.Employee-card > div > p {
+  color: black;
+  font-family: cursive;
+  padding: 0.5rem;
+}
+
+form {
+  border-radius: 6px;
+  font-size: 20px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0.7rem;
+  background-color: brown;
+}
+
+form > input {
+  padding: 0.4em;
+  margin: 1px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  scroll-behavior: smooth;
+  background-color: #61dafb;
+}
+form > label {
+  margin-top: 15px;
+  font-family: cursive;
+  font-size: 16px;
+}
+.btn {
+  outline: 0;
+  margin: 15px;
+  cursor: pointer;
+  font-family: cursive;
+  border-radius: 4px;
+  background: cornflowerblue;
+  width: 100px;
+  border: 0.5px solid rgba(0, 0, 0, 0.37);
+  padding: 0.5rem 1rem;
+}
+
+.add-employee-btn {
+  border-radius: 50px;
+  color: rgb(194, 112, 112);
+  font-size: 16px;
+  width: 300px;
+  background: lightgreen;
+  float: right;
+  font-family: cursive;
+  margin: 10px;
+  border-color: transparent;
+  display: inline-block;
+
+  height: 40px;
+
+  /*z-index: 10;*/
+  /*bottom: 0;*/
+  /*  margin: left 0;*/
+  width: 150px;
+}
+.btn-cancel {
+  color: white;
+  font-family: cursive;
+  background: rgb(44, 105, 218);
+  border-radius: 5px;
+}
+
+.btn-confirm {
+  color: white;
+  font-family: cursive;
+  background: cornflowerblue;
+  border-radius: 5px;
+}
+
+.employee-data {
+  border-radius: 5px;
+  border-color: #282c34;
+  margin: 1px;
+  background-color: antiquewhite;
+}
+
+.data-employee {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  border-color: aqua;
+}

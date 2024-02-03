@@ -7,6 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
 @Getter
@@ -16,6 +19,8 @@ import java.time.LocalDateTime;
 public class AccomplishmentDTO {
 
     private Integer accomplishmentId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_id")
     private Employee employee;
     private String description;
     private LocalDateTime accomplishmentDate;

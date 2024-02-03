@@ -7,6 +7,8 @@ import java.util.List;
 public interface AccomplishmentsServices {
     List<AccomplishmentDTO> listAccomplishment();
 
+    List<AccomplishmentDTO> listAccomplishmentByEmployeeID(Integer employeeId);
+
     AccomplishmentDTO getAccomplishment(Integer id);
     AccomplishmentDTO createAccomplishment(AccomplishmentDTO accomplishment);
     AccomplishmentDTO updateAccomplishment(Integer id, AccomplishmentDTO accomplishment);

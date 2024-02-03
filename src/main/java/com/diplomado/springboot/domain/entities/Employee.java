@@ -1,5 +1,7 @@
 package com.diplomado.springboot.domain.entities;
 
+import com.diplomado.springboot.dto.AccomplishmentDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
@@ -9,9 +11,9 @@ import java.util.List;
 @Table(name = "Employee")
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ci")
-    private Integer ci;
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
 
     @Column(name = "supervisor_id")
     private Integer supervisorId;
@@ -38,39 +40,48 @@ public class Employee {
     private Timestamp startAt;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Position> positions;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<LaborHistory> laborHistories;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Training> trainings;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<LicensesCertifications> licensesCertifications;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Evaluation> evaluations;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Incidents> incidents;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Contact> contacts;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Accomplishments> accomplishments;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Vacations> vacations;
 
-    public Employee(Integer ci, Integer supervisorId, String name, String role, String phone,
+    public Employee(Integer id, Integer supervisorId, String name, String role, String phone,
                     String password, String city, Timestamp birthday, Timestamp startAt,
                     List<Position> positions, List<LaborHistory> laborHistories, List<Training> trainings,
                     List<LicensesCertifications> licensesCertifications, List<Evaluation> evaluations,
                     List<Incidents> incidents,
                     List<Contact> contacts, List<Accomplishments> accomplishments, List<Vacations> vacations) {
-        this.ci = ci;
+        this.id = id;
         this.supervisorId = supervisorId;
         this.name = name;
         this.role = role;
@@ -93,12 +104,12 @@ public class Employee {
     public Employee() {
     }
 
-    public Integer getCi() {
-        return ci;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCi(Integer ci) {
-        this.ci = ci;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getSupervisorId() {

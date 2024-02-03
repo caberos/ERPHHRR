@@ -1,0 +1,25 @@
+server:
+  port: 4000
+
+spring:
+  application:
+    name: erphumanresources
+  datasource:
+    url: jdbc:postgresql://localhost:5432/erphumanresources
+    username: postgres
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        temp:
+          use_jdbc_metadata_defaults: false
+        jakarta:
+          persistence:
+            EntityManagerFactory: org.hibernate.SessionFactory
+  jackson:
+    serialization:
+      fail-on-empty-beans: false

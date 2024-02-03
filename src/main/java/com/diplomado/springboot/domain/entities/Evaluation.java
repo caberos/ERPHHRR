@@ -1,12 +1,13 @@
 package com.diplomado.springboot.domain.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "evaluations")
+@Table(name = "evaluation")
 public class Evaluation {
 
     @Id
@@ -15,10 +16,11 @@ public class Evaluation {
     private Integer evaluationId;
 
     @ManyToOne
-    @JoinColumn(name = "employee_ci")
+    @JoinColumn(name = "employee_id")
+    @JsonIgnore
     private Employee employee;
     @Column(name = "year")
-    private LocalDateTime year;
+    private Integer year;
     @Column(name = "time_scale")
     private LocalDateTime timeScale;
     @Column(name = "comments")
@@ -28,7 +30,7 @@ public class Evaluation {
     @Column(name = "eval_time")
     private LocalDateTime evalTime;
 
-    public Evaluation(Integer evaluationId, Employee employee, LocalDateTime year, LocalDateTime timeScale,
+    public Evaluation(Integer evaluationId, Employee employee, Integer year, LocalDateTime timeScale,
                       String comments, Integer score, LocalDateTime evalTime) {
         this.evaluationId = evaluationId;
         this.employee = employee;
@@ -58,11 +60,11 @@ public class Evaluation {
         this.employee = employee;
     }
 
-    public LocalDateTime getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(LocalDateTime year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 

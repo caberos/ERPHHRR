@@ -1,31 +1,33 @@
 package com.diplomado.springboot.domain.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Contacts")
+@Table(name = "contact")
 public class Contact {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "contact_id")
     private Integer contactId;
 
     @ManyToOne
-    @JoinColumn(name = "employee_ci")
+    @JoinColumn(name = "employee_id")
+    @JsonIgnore
     private Employee employee;
     @Column(name = "name")
     private String name;
     @Column(name = "relation")
-    private Integer relation;
+    private String relation;
     @Column(name = "phone")
-    private Integer phone;
+    private String phone;
     @Column(name = "address")
-    private Integer address;
+    private String address;
 
-    public Contact(Integer contactId, Employee employee, String name, Integer relation,
-                   Integer phone, Integer address) {
+    public Contact(Integer contactId, Employee employee, String name, String relation,
+                   String phone, String address) {
         this.contactId = contactId;
         this.employee = employee;
         this.name = name;
@@ -61,27 +63,27 @@ public class Contact {
         this.name = name;
     }
 
-    public Integer getRelation() {
+    public String getRelation() {
         return relation;
     }
 
-    public void setRelation(Integer relation) {
+    public void setRelation(String relation) {
         this.relation = relation;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public Integer getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Integer address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 }

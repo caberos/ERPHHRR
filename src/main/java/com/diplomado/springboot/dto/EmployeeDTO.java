@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.OneToMany;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class EmployeeDTO {
 
-    private Integer ci;
+    private Integer id;
 
     private Integer supervisorId;
 
@@ -47,6 +48,7 @@ public class EmployeeDTO {
 
     private List<Contact> contacts;
 
+    @OneToMany(mappedBy = "employee")
     private List<Accomplishments> accomplishments;
 
     private List<Vacations> vacations;

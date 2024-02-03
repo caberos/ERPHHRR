@@ -7,6 +7,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,10 +18,11 @@ import lombok.Setter;
 public class ContactDTO {
 
     private Integer contactId;
-
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_id")
     private Employee employee;
     private String name;
-    private Integer relation;
-    private Integer phone;
-    private Integer address;
+    private String relation;
+    private String phone;
+    private String address;
 }
