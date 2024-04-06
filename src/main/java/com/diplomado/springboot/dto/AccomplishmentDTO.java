@@ -11,6 +11,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -23,5 +24,5 @@ public class AccomplishmentDTO {
     @JoinColumn(name = "employee_id")
     private Employee employee;
     private String description;
-    private LocalDateTime accomplishmentDate;
+    private Date accomplishmentDate;
 }

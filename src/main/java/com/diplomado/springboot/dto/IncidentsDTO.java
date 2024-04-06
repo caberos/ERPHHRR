@@ -10,6 +10,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -25,5 +26,5 @@ public class IncidentsDTO {
 
     private Integer level;
 
-    private LocalDateTime incidentDate;
+    private Date incidentDate;
 }

@@ -58,10 +58,10 @@ export default function Sidebar() {
                   <Link to="/employees">Employee</Link>
                 </MenuItem>
                 <MenuItem icon={<HiPencilAlt />}>
-                  <Link to="/Vacation/:id"> Vacation</Link>
+                  <Link to="/department"> Department</Link>
                 </MenuItem>
                 <MenuItem icon={<HiOutlineCheck />}>
-                  <Link to="/Accomplisment/:id">Accomplishment</Link>
+                  <Link to="/equipments">Equipment</Link>
                 </MenuItem>
                 {/* <MenuItem icon={<BiCog />}>Settings</MenuItem> */}
               </Menu>

@@ -10,6 +10,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -21,7 +22,7 @@ public class VacationDTO {
     @JoinColumn(name = "employee_id")
     private Employee employee;
     private String reason;
-    private LocalDateTime duration;
-    private LocalDateTime startAt;
-    private LocalDateTime endAt;
+    private Date duration;
+    private Date startAt;
+    private Date endAt;
 }

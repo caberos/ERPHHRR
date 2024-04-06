@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "vacation")
@@ -21,14 +22,14 @@ public class Vacations {
     @Column(name = "reason")
     private String reason;
     @Column(name = "duration")
-    private LocalDateTime duration;
+    private Date duration;
     @Column(name = "start_at")
-    private LocalDateTime startAt;
+    private Date startAt;
     @Column(name = "end_at")
-    private LocalDateTime endAt;
+    private Date endAt;
 
-    public Vacations(Integer vacationId, Employee employee, String reason, LocalDateTime duration,
-                     LocalDateTime startAt, LocalDateTime endAt) {
+    public Vacations(Integer vacationId, Employee employee, String reason, Date duration,
+                     Date startAt, Date endAt) {
         this.vacationId = vacationId;
         this.employee = employee;
         this.reason = reason;
@@ -64,27 +65,27 @@ public class Vacations {
         this.reason = reason;
     }
 
-    public LocalDateTime getDuration() {
+    public Date getDuration() {
         return duration;
     }
 
-    public void setDuration(LocalDateTime duration) {
+    public void setDuration(Date duration) {
         this.duration = duration;
     }
 
-    public LocalDateTime getStartAt() {
+    public Date getStartAt() {
         return startAt;
     }
 
-    public void setStartAt(LocalDateTime startAt) {
+    public void setStartAt(Date startAt) {
         this.startAt = startAt;
     }
 
-    public LocalDateTime getEndAt() {
+    public Date getEndAt() {
         return endAt;
     }
 
-    public void setEndAt(LocalDateTime endAt) {
+    public void setEndAt(Date endAt) {
         this.endAt = endAt;
     }
 }

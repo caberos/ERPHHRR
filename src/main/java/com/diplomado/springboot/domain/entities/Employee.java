@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -34,10 +35,10 @@ public class Employee {
     private String city;
 
     @Column(name = "birthday")
-    private Timestamp birthday;
+    private Date birthday;
 
     @Column(name = "start_at")
-    private Timestamp startAt;
+    private Date startAt;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     @JsonIgnore
@@ -76,7 +77,7 @@ public class Employee {
     private List<Vacations> vacations;
 
     public Employee(Integer id, Integer supervisorId, String name, String role, String phone,
-                    String password, String city, Timestamp birthday, Timestamp startAt,
+                    String password, String city, Date birthday, Date startAt,
                     List<Position> positions, List<LaborHistory> laborHistories, List<Training> trainings,
                     List<LicensesCertifications> licensesCertifications, List<Evaluation> evaluations,
                     List<Incidents> incidents,
@@ -160,19 +161,19 @@ public class Employee {
         this.city = city;
     }
 
-    public Timestamp getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Timestamp birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
-    public Timestamp getStartAt() {
+    public Date getStartAt() {
         return startAt;
     }
 
-    public void setStartAt(Timestamp startAt) {
+    public void setStartAt(Date startAt) {
         this.startAt = startAt;
     }
 

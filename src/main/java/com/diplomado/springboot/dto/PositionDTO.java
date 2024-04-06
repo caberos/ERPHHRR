@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 @AllArgsConstructor
 public class PositionDTO {
     private Integer id;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id")
     private Employee employee;

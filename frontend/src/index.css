@@ -35,12 +35,12 @@
 }
 
 .home {
-  background-color: #cccccc; /* Used if the image is unavailable */
-  height: 700px; /* You must set a specified height */
+  background-color: #cccccc;
+  height: 700px;
   margin-left: 200px;
   margin-top: 0px;
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
 }
 
@@ -99,7 +99,7 @@ form {
   background-color: brown;
 }
 
-form > input {
+form > input, select {
   padding: 0.4em;
   margin: 1px 0;
   display: inline-block;
@@ -108,11 +108,13 @@ form > input {
   scroll-behavior: smooth;
   background-color: #61dafb;
 }
+
 form > label {
   margin-top: 15px;
   font-family: cursive;
   font-size: 16px;
 }
+
 .btn {
   outline: 0;
   margin: 15px;
@@ -136,15 +138,10 @@ form > label {
   margin: 10px;
   border-color: transparent;
   display: inline-block;
-
   height: 40px;
-
-  /*z-index: 10;*/
-  /*bottom: 0;*/
-  /*  margin: left 0;*/
-  width: 150px;
 }
-.btn-cancel {
+
+.btn-cancel, .btn-edit {
   color: white;
   font-family: cursive;
   background: rgb(44, 105, 218);
@@ -162,6 +159,7 @@ form > label {
   border-radius: 5px;
   border-color: #282c34;
   margin: 1px;
+  margin-left: 200px;
   background-color: antiquewhite;
 }
 
@@ -172,3 +170,70 @@ form > label {
   justify-content: center;
   border-color: aqua;
 }
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: 0 auto;
+  margin-left: 200px;
+  border-bottom: 1px solid #282c34;
+}
+
+th {
+  height: 60%;
+  border-bottom: 1px solid #282c34;
+}
+
+.top-menu {
+  text-size-adjust: 12;
+  background-color: #449c9c;
+  padding: 20px;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+}
+
+nav li {
+  display: inline; 
+  margin-right: 20px; 
+}
+
+nav a {
+  text-decoration: none;
+  color: #160404;
+  font-size: 20px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.add-form {
+  border-radius: 6px;
+  font-size: 20px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0.7rem;
+  background-color: brown;
+
+}
+
+.employee-detail {
+  flex-direction: column;
+  height: 300px;
+  padding-left: 2%;
+}
+
+.data-details{
+  padding-left: 2%;
+  border-radius: 1px;
+}
+
+.create-btns{
+  border-radius: 1px;
+}
+
+

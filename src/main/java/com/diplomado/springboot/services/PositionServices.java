@@ -15,4 +15,6 @@ public interface PositionServices {
     PositionDTO updatePosition(Integer id, PositionDTO position);
 
     PositionDTO deletePosition(Integer id);
+
+    List<PositionDTO> getPositionByEmployeeId(Integer employeeId);
 }

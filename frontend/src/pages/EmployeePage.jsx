@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import SearchEmployee from "../components/employee/SearchEmployee";
 import { Link } from "react-router-dom";
 import EmployeeCard from "../components/employee/EmployeeCard";
-import { employeeListRequest } from "../api/request";
+import { employeeListRequest } from "../api/requests/employeeRequest";
 import AddEmployee from "../components/employee/AddEmployee";
 
 function EmployeePage() {

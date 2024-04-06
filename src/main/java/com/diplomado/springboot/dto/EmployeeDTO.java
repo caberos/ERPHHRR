@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.OneToMany;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -30,9 +31,9 @@ public class EmployeeDTO {
 
     private String city;
 
-    private Timestamp birthday;
+    private Date birthday;
 
-    private Timestamp startAt;
+    private Date startAt;
 
     private List<Position> positions;
 

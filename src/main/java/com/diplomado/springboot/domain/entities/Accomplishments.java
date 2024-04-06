@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "accomplishments")
@@ -23,10 +24,10 @@ public class Accomplishments {
     private String description;
 
     @Column(name = "accomplishment_date")
-    private LocalDateTime accomplishmentDate;
+    private Date accomplishmentDate;
 
     public Accomplishments(Integer accomplishmentId, Employee employee,
-                           String description, LocalDateTime accomplishmentDate) {
+                           String description, Date accomplishmentDate) {
         this.accomplishmentId = accomplishmentId;
         this.employee = employee;
         this.description = description;
@@ -60,11 +61,11 @@ public class Accomplishments {
         this.description = description;
     }
 
-    public LocalDateTime getAccomplishmentDate() {
+    public Date getAccomplishmentDate() {
         return accomplishmentDate;
     }
 
-    public void setAccomplishmentDate(LocalDateTime accomplishmentDate) {
+    public void setAccomplishmentDate(Date accomplishmentDate) {
         this.accomplishmentDate = accomplishmentDate;
     }
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "evaluation")
@@ -22,16 +23,16 @@ public class Evaluation {
     @Column(name = "year")
     private Integer year;
     @Column(name = "time_scale")
-    private LocalDateTime timeScale;
+    private Date timeScale;
     @Column(name = "comments")
     private String comments;
     @Column(name = "score")
     private Integer score;
     @Column(name = "eval_time")
-    private LocalDateTime evalTime;
+    private Date evalTime;
 
-    public Evaluation(Integer evaluationId, Employee employee, Integer year, LocalDateTime timeScale,
-                      String comments, Integer score, LocalDateTime evalTime) {
+    public Evaluation(Integer evaluationId, Employee employee, Integer year, Date timeScale,
+                      String comments, Integer score, Date evalTime) {
         this.evaluationId = evaluationId;
         this.employee = employee;
         this.year = year;
@@ -68,11 +69,11 @@ public class Evaluation {
         this.year = year;
     }
 
-    public LocalDateTime getTimeScale() {
+    public Date getTimeScale() {
         return timeScale;
     }
 
-    public void setTimeScale(LocalDateTime timeScale) {
+    public void setTimeScale(Date timeScale) {
         this.timeScale = timeScale;
     }
 
@@ -92,11 +93,11 @@ public class Evaluation {
         this.score = score;
     }
 
-    public LocalDateTime getEvalTime() {
+    public Date getEvalTime() {
         return evalTime;
     }
 
-    public void setEvalTime(LocalDateTime evalTime) {
+    public void setEvalTime(Date evalTime) {
         this.evalTime = evalTime;
     }
 }

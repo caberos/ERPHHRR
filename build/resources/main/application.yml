@@ -8,6 +8,8 @@ spring:
     url: jdbc:postgresql://localhost:5432/erphumanresources
     username: postgres
     password: admin
+    myDataSource:
+      refresh: true
   jpa:
     hibernate:
       ddl-auto: update

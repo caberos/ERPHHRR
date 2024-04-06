@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "incidents")
@@ -27,10 +28,10 @@ public class Incidents {
     private Integer level;
 
     @Column(name = "incident_date")
-    private LocalDateTime incidentDate;
+    private Date incidentDate;
 
     public Incidents(Integer incidentId, Employee employee, String description,
-                     Integer level, LocalDateTime incidentDate) {
+                     Integer level, Date incidentDate) {
         this.incidentId = incidentId;
         this.employee = employee;
         this.description = description;
@@ -73,11 +74,11 @@ public class Incidents {
         this.level = level;
     }
 
-    public LocalDateTime getIncidentDate() {
+    public Date getIncidentDate() {
         return incidentDate;
     }
 
-    public void setIncidentDate(LocalDateTime incidentDate) {
+    public void setIncidentDate(Date incidentDate) {
         this.incidentDate = incidentDate;
     }
 }

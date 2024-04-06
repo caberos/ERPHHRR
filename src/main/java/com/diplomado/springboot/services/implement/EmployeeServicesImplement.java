@@ -33,7 +33,7 @@ public class EmployeeServicesImplement implements EmployeeServices {
         List<Employee> employeeList = employeeRepository.findAll();
         Employee res = new Employee();
         for (Employee aux : employeeList) {
-            if (aux.getId() == id) {
+            if (aux.getId().intValue() == id.intValue()) {
                 res = aux;
                 break;
             }
@@ -43,7 +43,6 @@ public class EmployeeServicesImplement implements EmployeeServices {
 
     @Override
     public EmployeeDTO createEmployee(EmployeeDTO employee) {
-        System.out.println(employee);
         return this.employeeMapper.toDto(
                 employeeRepository.save(this.employeeMapper.toEntity(employee)));
     }
@@ -60,7 +59,7 @@ public class EmployeeServicesImplement implements EmployeeServices {
         List<Employee> employeeList = employeeRepository.findAll();
         Employee res = new Employee();
         for (Employee aux : employeeList) {
-            if (aux.getId() == id) {
+            if (aux.getId().intValue() == id.intValue()) {
                 res = aux;
                 employeeRepository.deleteById(Long.valueOf(id));
                 break;

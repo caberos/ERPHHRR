@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "licenses_Certifications")
@@ -23,9 +24,9 @@ public class LicensesCertifications {
     private String name;
 
     @Column(name = "expired")
-    private LocalDateTime expired;
+    private Date expired;
 
-    public LicensesCertifications(Integer licensesId, Employee employee, String name, LocalDateTime expired) {
+    public LicensesCertifications(Integer licensesId, Employee employee, String name, Date expired) {
         this.licensesId = licensesId;
         this.employee = employee;
         this.name = name;
@@ -59,11 +60,11 @@ public class LicensesCertifications {
         this.name = name;
     }
 
-    public LocalDateTime getExpired() {
+    public Date getExpired() {
         return expired;
     }
 
-    public void setExpired(LocalDateTime expired) {
+    public void setExpired(Date expired) {
         this.expired = expired;
     }
 }

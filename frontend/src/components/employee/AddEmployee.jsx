@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
-import { createEmployee } from "../../api/request";
+import { createEmployee } from "../../api/requests/employeeRequest";
 
 const customStyles = {
   content: {
@@ -27,17 +27,17 @@ function AddEmployee({ employee }) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [form, setForm] = useState({
     id:"",
-    Name: "",
-    dateBirth: "",
+    name: "",
+    birthday: "",
     phone: "",
     mail: "",
     city: "",
     ci: "",
-    supervisor: "",
+    supervisorId: "",
     role: "",
     password: "",
     admin: "",
-    start_at: "",
+    startAt: "",
   });
 
   const handleChange = (event) => {
@@ -87,17 +87,17 @@ function AddEmployee({ employee }) {
             <label>Name</label>
             <input
               type="text"
-              value={form.Name}
+              value={form.name}
               onChange={handleChange}
-              name="Name"
+              name="name"
               required
             />
-            <label>Date of Birth</label>
+            <label>Birthday</label>
             <input
               type="date"
-              value={form.dateBirth}
+              value={form.birthday}
               onChange={handleChange}
-              name="dateBirth"
+              name="birthday"
               required
             />
             <label>Phone number</label>
@@ -124,12 +124,12 @@ function AddEmployee({ employee }) {
               name="city"
               required
             />
-            <label>Supervisor</label>
+            <label>SupervisorId</label>
             <input
               type="text"
-              value={form.supervisor}
+              value={form.supervisorId}
               onChange={handleChange}
-              name="supervisor"
+              name="supervisorId"
               required
             />
             <label>Role</label>
@@ -159,9 +159,9 @@ function AddEmployee({ employee }) {
             <label>Start to work</label>
             <input
               type="date"
-              value={form.start_at}
+              value={form.startAt}
               onChange={handleChange}
-              name="start_at"
+              name="startAt"
               required
             />
           </form>

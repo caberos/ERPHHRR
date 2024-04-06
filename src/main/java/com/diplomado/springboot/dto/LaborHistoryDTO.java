@@ -10,6 +10,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -22,6 +23,6 @@ public class LaborHistoryDTO {
     private Employee employee;
     private Integer postId;
     private String description;
-    private LocalDateTime startAt;
-    private LocalDateTime endAt;
+    private Date startAt;
+    private Date endAt;
 }

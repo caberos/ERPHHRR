@@ -12,7 +12,7 @@ function EmployeeCard({ employee }) {
         </h3>
         <li>
           <Link to={{
-            pathname: `employee/${employee.id}`,
+            pathname: `../employee/${employee.id}`,
             state: {id} 
           }}>
             {employee.id}

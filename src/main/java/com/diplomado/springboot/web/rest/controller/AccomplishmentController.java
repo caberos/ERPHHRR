@@ -37,11 +37,11 @@ public class AccomplishmentController {
     }
 
     @PostMapping(path = "/create")
-    public ResponseEntity<AccomplishmentDTO> createAccomplishment(@Valid @RequestBody AccomplishmentDTO rolDTO) throws URISyntaxException {
-        if (rolDTO == null) {
+    public ResponseEntity<AccomplishmentDTO> createAccomplishment(@Valid @RequestBody AccomplishmentDTO accomplishmentDTO) throws URISyntaxException {
+        if (accomplishmentDTO == null) {
             throw new ApiRequestException("Invalid input data. Please check the provided information.");
         }
-        return ResponseEntity.created(null).body(accomplishmentsServices.createAccomplishment(rolDTO));
+        return ResponseEntity.created(null).body(accomplishmentsServices.createAccomplishment(accomplishmentDTO));
     }
 
     @PutMapping(path = "/update/{id}")

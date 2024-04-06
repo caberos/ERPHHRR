@@ -7,6 +7,7 @@ import com.diplomado.springboot.services.PositionServices;
 import com.diplomado.springboot.services.mapper.PositionMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -72,5 +73,17 @@ public class PositionServicesImplement implements PositionServices {
             }
         }
         return this.positionMapper.toDto(res);
+    }
+
+    @Override
+    public List<PositionDTO> getPositionByEmployeeId(Integer employeeId) {
+        List<Position> positionList = positionRepository.findAll();
+        List<PositionDTO> res = new ArrayList<>();
+        for (Position aux : positionList) {
+            if (aux.getEmployee().getId() == employeeId) {
+                res.add(this.positionMapper.toDto(aux));
+            }
+        }
+        return res;
     }
 }

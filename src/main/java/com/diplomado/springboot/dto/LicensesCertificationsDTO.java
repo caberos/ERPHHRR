@@ -10,6 +10,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -23,5 +24,5 @@ public class LicensesCertificationsDTO {
 
     private String name;
 
-    private LocalDateTime expired;
+    private Date expired;
 }

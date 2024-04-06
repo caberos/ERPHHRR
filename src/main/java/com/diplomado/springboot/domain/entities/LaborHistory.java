@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "labor_History")
@@ -23,12 +24,12 @@ public class LaborHistory {
     @Column(name = "description")
     private String description;
     @Column(name = "start_at")
-    private LocalDateTime startAt;
+    private Date startAt;
     @Column(name = "end_at")
-    private LocalDateTime endAt;
+    private Date endAt;
 
     public LaborHistory(Integer historyId, Employee employee, Integer postId, String description,
-                        LocalDateTime startAt, LocalDateTime endAt) {
+                        Date startAt, Date endAt) {
        this.historyId = historyId;
         this.employee = employee;
         this.postId = postId;
@@ -72,19 +73,19 @@ public class LaborHistory {
         this.description = description;
     }
 
-    public LocalDateTime getStartAt() {
+    public Date getStartAt() {
         return startAt;
     }
 
-    public void setStartAt(LocalDateTime startAt) {
+    public void setStartAt(Date startAt) {
         this.startAt = startAt;
     }
 
-    public LocalDateTime getEndAt() {
+    public Date getEndAt() {
         return endAt;
     }
 
-    public void setEndAt(LocalDateTime endAt) {
+    public void setEndAt(Date endAt) {
         this.endAt = endAt;
     }
 }

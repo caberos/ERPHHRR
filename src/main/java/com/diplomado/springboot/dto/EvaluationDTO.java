@@ -10,6 +10,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -21,9 +22,9 @@ public class EvaluationDTO {
     @JoinColumn(name = "employee_id")
     private Employee employee;
     private Integer year;
-    private LocalDateTime timeScale;
+    private Date timeScale;
     private String comments;
     private Integer score;
-    private LocalDateTime evalTime;
+    private Date evalTime;
 
 }
