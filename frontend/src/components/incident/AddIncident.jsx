@@ -32,7 +32,7 @@ function AddIncident({ incident }) {
   const [form, setForm] = useState({
     incident_id: "",
     description: "",
-    Level: "",
+    level: "",
     date: "",
   });
 
@@ -64,9 +64,9 @@ function AddIncident({ incident }) {
 
   return (
     <div className="add-form">
-      <h2>Create Labor history</h2>
+      <h2>Crear Incidente</h2>
       <form onSubmit={handleSubmit}>
-        <label>Description</label>
+        <label>Descripcion</label>
         <input
           type="text"
           value={form.description}
@@ -74,7 +74,7 @@ function AddIncident({ incident }) {
           name="description"
           required
         />
-        <label>Level</label>
+        <label>Nivel</label>
         <input
           type="number"
           value={form.level}
@@ -82,7 +82,7 @@ function AddIncident({ incident }) {
           name="level"
           required
         />
-        <label>Date</label>
+        <label>Fecha</label>
         <input
           type="date"
           value={form.date}
@@ -92,10 +92,10 @@ function AddIncident({ incident }) {
         />
         <div>
           <button className="btn-cancel" onClick={closeModal}>
-            Cancel
+            Cancelar
           </button>
           <button className="btn-confirm" type="submit" onClick={handleSubmit}>
-            Submit
+            Enviar
           </button>
         </div>
       </form>

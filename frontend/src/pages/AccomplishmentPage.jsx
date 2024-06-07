@@ -78,7 +78,7 @@ function AccomplishmentPage() {
                   state: { idEmployee },
                 }}
               >
-                Vacation
+                Vacaciones
               </Link>
             </li>
             <li>
@@ -88,7 +88,7 @@ function AccomplishmentPage() {
                   state: { idEmployee },
                 }}
               >
-                Labor History
+                Historial Laboral
               </Link>
             </li>
             <li>
@@ -98,7 +98,7 @@ function AccomplishmentPage() {
                   state: { idEmployee },
                 }}
               >
-                Accomplishments
+                Logros
               </Link>
             </li>
             <li>
@@ -108,7 +108,7 @@ function AccomplishmentPage() {
                   state: { idEmployee },
                 }}
               >
-                Incidents
+                Incidentes
               </Link>
             </li>
             <li>
@@ -118,31 +118,31 @@ function AccomplishmentPage() {
                   state: { idEmployee },
                 }}
               >
-                Evaluation
+                Evaluaciones
               </Link>
             </li>
           </ul>
         </nav>
       </div>
-      <h1>Employee Detail</h1>
+      <h1>Detalles del Empleado</h1>
       <article className="employee-data">
         <>
           <div className="data-employee">
-            <p>Name: {name}</p>
-            <p>Role: {role}</p>
-            <p>Phone: {phone}</p>
-            <p>City: {city}</p>
+            <p>Nombre: {name}</p>
+            <p>Rol: {role}</p>
+            <p>Fono: {phone}</p>
+            <p>Ciudad: {city}</p>
           </div>
         </>
       </article>
       <div>
-        <h3>Accomplishments Table</h3>
+        <h3>Tabla de logros</h3>
         <table>
           <thead>
             <tr>
               <th>Id</th>
-              <th>Description</th>
-              <th>Accomplisment Date</th>
+              <th>Descripcion</th>
+              <th>Fecha del logro</th>
               <th></th>
             </tr>
           </thead>
@@ -160,11 +160,11 @@ function AccomplishmentPage() {
                   <button className="btn-confirm">
                     <Link
                       to={{
-                        pathname: `/employee/accomplishment/edit/${idEmployee}/${accomplishment.accomplishmentId}`,
+                        pathname: `/employee/${idEmployee}/accomplishment/edit/${accomplishment.accomplishmentId}`,
                         state: { accomplishment },
                       }}
                     >
-                      Edit
+                      Editar
                     </Link>
                   </button>
                   <button
@@ -173,7 +173,7 @@ function AccomplishmentPage() {
                       handleDelete(accomplishment.accomplishmentId)
                     }
                   >
-                    Delete
+                    Eliminar
                   </button>
                 </td>
               </tr>
@@ -183,11 +183,11 @@ function AccomplishmentPage() {
         <div>
           {" "}
           <button className="btn-cancel" onClick={closeModal}>
-            Back
+            Atras
           </button>
           <button className="btn-confirm">
             <Link to={`../employee/AddAccomplishment/${idEmployee}`}>
-              Create
+              Crear
             </Link>
           </button>
         </div>

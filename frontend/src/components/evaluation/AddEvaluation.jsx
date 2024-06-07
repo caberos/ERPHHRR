@@ -36,7 +36,7 @@ function AddEvaluation({ evaluation }) {
     time: "",
     comment: "",
     score: "",
-    eval_time: "",
+    evalTime: "",
   });
 
   const handleChange = (event) => {
@@ -67,9 +67,9 @@ function AddEvaluation({ evaluation }) {
 
   return (
     <div className="add-form">
-      <h2>Create Evaluation</h2>
+      <h2>Crear Evaluacion</h2>
       <form onSubmit={handleSubmit}>
-        <label>Comments</label>
+        <label>Comentario</label>
         <input
           type="text"
           value={form.comment}
@@ -77,7 +77,7 @@ function AddEvaluation({ evaluation }) {
           name="comment"
           required
         />
-        <label>Score</label>
+        <label>Puntuacion</label>
         <input
           type="number"
           value={form.score}
@@ -85,7 +85,7 @@ function AddEvaluation({ evaluation }) {
           name="score"
           required
         />
-        <label>Year</label>
+        <label>Año</label>
         <input
           type="number"
           value={form.year}
@@ -93,15 +93,15 @@ function AddEvaluation({ evaluation }) {
           name="year"
           required
         />
-        <label>Evaluation Time</label>
+        <label>Tiempo de Evaluacion</label>
         <input
           type="date"
-          value={form.eval_time}
+          value={form.evalTime}
           onChange={handleChange}
           name="eval_time"
           required
         />
-        <label>Time Scale</label>
+        <label>Escala de Tiempo</label>
         <input
           type="date"
           value={form.time}
@@ -111,10 +111,10 @@ function AddEvaluation({ evaluation }) {
         />
         <div>
           <button className="btn-cancel" onClick={closeModal}>
-            Cancel
+            Cancelar
           </button>
           <button className="btn-confirm" type="submit" onClick={handleSubmit}>
-            Submit
+            Enviar
           </button>
         </div>
       </form>

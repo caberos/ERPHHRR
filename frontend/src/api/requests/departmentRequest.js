@@ -33,6 +33,22 @@ export const departmentListRequest = async () => {
       throw error;
     }
   };
+
+  export const updateDepartmentRequest = async (id, newDepartment) => {
+    console.log(newDepartment);
+    try {
+        const response = await axios.put(`department/update/${id}`, newDepartment, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+};
   
   export const deleteDepartment = async (id) => {
     try {

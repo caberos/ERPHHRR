@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import { useLocation, useNavigate } from "react-router-dom";
-import { createVacation } from "../../api/requests/vacationRequest";
-import { createAccomplishment, updateAccomplishment } from "../../api/requests/accomplishmentRequest";
+import {
+  updateAccomplishment,
+  accomplishmentGetRequest,
+} from "../../api/requests/accomplishmentRequest";
 
 const customStyles = {
   content: {
@@ -29,53 +31,68 @@ function EditAccomplishment({ accomplishment }) {
   const [modalIsOpen, setIsOpen] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
-  const idEmployee = location.pathname.split("/").pop();
-  console.log(AccomplishmentData)
+  const idAccomplishment = location.pathname.split("/").pop();
+
+  const [idEmployee, setIdEmployee] = useState(null);
   const [form, setForm] = useState({
     accomplishment_id: "",
     description: "",
-    date: "",
-    employee: { id : idEmployee}
+    accomplishmentDate: "",
+    employee: { id: "" },
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await accomplishmentGetRequest(idAccomplishment);
+        var data = response.data;
+        setIdEmployee(data.employee.id); 
+        console.log(idEmployee);
+        console.log(data);
+        setForm({
+          accomplishmentId: idAccomplishment,
+          description: "",
+          accomplishmentDate: data.accomplishmentDate,
+          employee: data.employee,
+        });
+      
+      } catch (error) {
+        console.error("Error fetching accomplishment data:", error);
+      }
+    };
+    fetchData();
+  }, [idAccomplishment]);
 
   const handleChange = (event) => {
     setForm({
       ...form,
       [event.target.name]: event.target.value,
-      accomplishment_id: Math.floor( Math.random() * 100),
+      accomplishmentDate : new Date(form.accomplishmentDate).getTime(),
     });
   };
 
-  function AccomplishmentData() {
-    const location = useLocation();
-    const { accomplishmentData } = location.state;
-    console.log(accomplishmentData)
-  }
-  
-
-  function closeModal() {
+  const closeModal = () => {
     setIsOpen(false);
-    navigate(-1)
-  }
+    navigate(-1);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(form);
-      const response = await updateAccomplishment(idEmployee,form);
-      console.log("Vacation created:", response);
+      
+      const response = await updateAccomplishment(idAccomplishment, form);
+      console.log(response.data);
       closeModal();
     } catch (error) {
-      console.error("Error creating Vacation:", error.message);
+      console.error("Error updating accomplishment:", error.message);
     }
-    setForm(false);
   };
 
   return (
     <div className="add-form">
-      <h2>Create Accomplishment</h2>
+      <h2>Editar Logro</h2>
       <form onSubmit={handleSubmit}>
-        <label>Description</label>
+        <label>Descripcion</label>
         <input
           type="text"
           value={form.description}
@@ -83,20 +100,20 @@ function EditAccomplishment({ accomplishment }) {
           name="description"
           required
         />
-        <label>Date</label>
+        <label>Fecha</label>
         <input
           type="date"
           value={form.date}
           onChange={handleChange}
-          name="date"
+          name="accomplishmentDate"
           required
         />
         <div>
           <button className="btn-cancel" onClick={closeModal}>
-            Cancel
+            Cancelar
           </button>
-          <button className="btn-confirm" type="submit" onClick={handleSubmit}>
-            Submit
+          <button className="btn-confirm" type="submit">
+            Enviar
           </button>
         </div>
       </form>

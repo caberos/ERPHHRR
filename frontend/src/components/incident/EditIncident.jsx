@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import { useLocation, useNavigate } from "react-router-dom";
-import { createTraining } from "../../api/requests/trainingRequest";
-
+import {
+  updateIncidentRequest,
+  incidentGetRequest,
+} from "../../api/requests/incidentsRequest";
 
 const customStyles = {
   content: {
@@ -25,57 +27,70 @@ const customStyles = {
 
 ReactModal.setAppElement("#root");
 
-function AddTraining({ training }) {
+function EditIncident({ incident }) {
   const [modalIsOpen, setIsOpen] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
-  const idEmployee = location.pathname.split("/").pop();
+  const idIncident = location.pathname.split("/").pop();
+
+  const [idEmployee, setIdEmployee] = useState(null);
   const [form, setForm] = useState({
-    name: "",
-    type: "",
+    incidentId: idIncident,
     description: "",
-    startAt: "",
-    endAt: "",
+    level: "",
+    incidentDate: "",
+    employee: { id: "" },
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await incidentGetRequest(idIncident);
+        var data = response.data;
+        setIdEmployee(data.employee.id);
+        console.log(idEmployee);
+        console.log(data);
+        setForm({
+          evaluationId: idIncident,
+          description: "",
+          level: "",
+          incidentDate: "",
+          employee: data.employee,
+        });
+      } catch (error) {
+        console.error("Error fetching incident data:", error);
+      }
+    };
+    fetchData();
+  }, [idIncident]);
 
   const handleChange = (event) => {
     setForm({
       ...form,
       [event.target.name]: event.target.value,
-      employee: { id: idEmployee },
-      trainingId: Math.floor(Math.random() * 100)
     });
   };
 
-  function closeModal() {
+  const closeModal = () => {
     setIsOpen(false);
     navigate(-1);
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await createTraining(form);
-      console.log("Training created:", response);
+      const response = await updateIncidentRequest(idIncident, form);
+      console.log(response.data);
       closeModal();
     } catch (error) {
-      console.error("Error creating training:", error.message);
+      console.error("Error updating incident:", error.message);
     }
-    setForm(false);
   };
 
   return (
     <div className="add-form">
-      <h2>Crear Capacitacion</h2>
+      <h2>Editar Incidente</h2>
       <form onSubmit={handleSubmit}>
-        <label>Nombre</label>
-        <input
-          type="text"
-          value={form.name}
-          onChange={handleChange}
-          name="name"
-          required
-        />
         <label>Descripcion</label>
         <input
           type="text"
@@ -84,29 +99,20 @@ function AddTraining({ training }) {
           name="description"
           required
         />
-        <label>Tipo</label>
+        <label>Nivel</label>
         <input
-          type="text"
-          value={form.address}
+          type="number"
+          value={form.level}
           onChange={handleChange}
-          name="address"
+          name="level"
           required
         />
-        <label>Inicio</label>
+        <label>Fecha</label>
         <input
           type="date"
-          value={form.startAt}
+          value={form.date}
           onChange={handleChange}
-          name="startAt"
-          required
-        />
-
-        <label>Finaliza</label>
-        <input
-          type="date"
-          value={form.endAt}
-          onChange={handleChange}
-          name="endAt"
+          name="date"
           required
         />
         <div>
@@ -122,4 +128,4 @@ function AddTraining({ training }) {
   );
 }
 
-export default AddTraining;
+export default EditIncident;

@@ -31,7 +31,7 @@ function EmployeePage() {
         <AddEmployee />
       </div>
       <div>
-        <h2>Employee List</h2>
+        <h2>Lista de Empleado</h2>
         <ul className="Employee-list">
           {employees.map((emp) => (
             <li key={emp.id}>

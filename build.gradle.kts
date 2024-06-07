@@ -27,6 +27,8 @@ dependencies {
     implementation("org.hibernate.orm:hibernate-core:6.4.1.Final")
     implementation("org.hibernate:hibernate-entitymanager:5.6.15.Final")
     implementation("javax.xml.bind:jaxb-api:2.3.1")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.4.0")
+
 
 
 

@@ -33,6 +33,22 @@ export const licensesListRequest = async () => {
       throw error;
     }
   };
+
+  export const updateLicRequest = async (id, newLicenses) => {
+    console.log(newLicenses);
+    try {
+        const response = await axios.put(`lic_cert/update/${id}`, newLicenses, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+};
   
   export const deleteLicenses = async (id) => {
     try {

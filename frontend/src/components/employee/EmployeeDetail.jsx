@@ -185,7 +185,7 @@ function EmployeeDetail() {
                   state: { idEmployee },
                 }}
               >
-                Vacation
+                Vacaciones
               </Link>
             </li>
             <li>
@@ -195,7 +195,7 @@ function EmployeeDetail() {
                   state: { idEmployee },
                 }}
               >
-                Labor History
+                Historial Laboral
               </Link>
             </li>
             <li>
@@ -205,7 +205,7 @@ function EmployeeDetail() {
                   state: { idEmployee },
                 }}
               >
-                Accomplishments
+                Logros
               </Link>
             </li>
             <li>
@@ -215,7 +215,7 @@ function EmployeeDetail() {
                   state: { idEmployee },
                 }}
               >
-                Incidents
+                Incidentes
               </Link>
             </li>
             <li>
@@ -225,22 +225,24 @@ function EmployeeDetail() {
                   state: { idEmployee },
                 }}
               >
-                Evaluation
+                Evaluaciones
               </Link>
             </li>
           </ul>
         </nav>
       </div>
-      <h1>Employee Detail</h1>
+      <h1>Detalle del Empleado</h1>
       <article className="employee-data">
         <>
           <div className="data-employee">
-            <p>Name: {name}</p>
-            <p>Role: {role}</p>
-            <p>Phone: {phone}</p>
-            <p>City: {city}</p>
-            <p>Birthday: {new Date(birthday).toLocaleDateString("en-US")}</p>
-            <p>Start Date: {new Date(startAt).toLocaleDateString("en-US")}</p>
+            <p>Nombre: {name}</p>
+            <p>Rol: {role}</p>
+            <p>Fono: {phone}</p>
+            <p>Ciudad: {city}</p>
+            <p>Cumpleaños: {new Date(birthday).toLocaleDateString("en-US")}</p>
+            <p>
+              Fecha de Inicio: {new Date(startAt).toLocaleDateString("en-US")}
+            </p>
           </div>
           <div>
             <button className="btn-edit">Edit</button>
@@ -248,20 +250,20 @@ function EmployeeDetail() {
               className="btn-confirm"
               onClick={() => employeeDelete(idEmployee)}
             >
-              Delete
+              Eliminar
             </button>
           </div>
         </>
       </article>
       <div>
-        <h3>Trainings Table</h3>
+        <h3>Table de Capacitaciones</h3>
         <table>
           <thead>
             <tr>
-              <th>Description</th>
-              <th>Type</th>
-              <th>Start Date</th>
-              <th>End Date</th>
+              <th>Descripcion</th>
+              <th>Tipo</th>
+              <th>Fecha de Inicio</th>
+              <th>Fecha de Conclusion</th>
               <th></th>
             </tr>
           </thead>
@@ -276,12 +278,21 @@ function EmployeeDetail() {
                 <td>{new Date(training.endAt).toLocaleDateString("en-US")}</td>
                 <td>
                   <td>
-                    <button className="btn-cancel">Edit</button>
+                  <button className="btn-confirm">
+                    <Link
+                      to={{
+                        pathname: `/employee/${idEmployee}/training/edit/${training.trainingId}`,
+                        state: { training },
+                      }}
+                    >
+                      Editar
+                    </Link>
+                  </button>
                     <button
                       className="btn-confirm"
                       onClick={() => trainingDelete(training.trainingId)}
                     >
-                      Delete
+                      Eliminar
                     </button>
                   </td>
                 </td>
@@ -297,15 +308,15 @@ function EmployeeDetail() {
         </div>
       </div>
       <div>
-        <h3>Positions Table</h3>
+        <h3>Tabla de Posiciones</h3>
         <table>
           <thead>
             <tr>
               <th>id</th>
-              <th>Name</th>
-              <th>department</th>
-              <th>Description</th>
-              <th>Salary</th>
+              <th>Nombre</th>
+              <th>Departamento</th>
+              <th>Descripcion</th>
+              <th>Salario</th>
               <th></th>
             </tr>
           </thead>
@@ -319,12 +330,21 @@ function EmployeeDetail() {
                 <td>{position.salary}</td>
                 <td>
                   <td>
-                    <button className="btn-cancel">Edit</button>
+                  <button className="btn-confirm">
+                    <Link
+                      to={{
+                        pathname: `/employee/${idEmployee}/position/edit/${position.id}`,
+                        state: { position },
+                      }}
+                    >
+                      Editar
+                    </Link>
+                  </button>
                     <button
                       className="btn-confirm"
                       onClick={() => positionDelete(position.id)}
                     >
-                      Delete
+                      Eliminar
                     </button>
                   </td>
                 </td>
@@ -335,19 +355,19 @@ function EmployeeDetail() {
         <div>
           {" "}
           <button className="btn-confirm">
-            <Link to={`../employee/AddPosition/${idEmployee}`}>Create</Link>
+            <Link to={`../employee/AddPosition/${idEmployee}`}>Crear</Link>
           </button>
         </div>
       </div>
       <div>
-        <h3>Contact Table</h3>
+        <h3>Tabla de Contacto</h3>
         <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Phone</th>
-              <th>Address</th>
-              <th>RelationShip</th>
+              <th>Nombre</th>
+              <th>Fono</th>
+              <th>Direccion</th>
+              <th>Relacion</th>
               <th></th>
             </tr>
           </thead>
@@ -360,12 +380,21 @@ function EmployeeDetail() {
                 <td>{contact.relation}</td>
                 <td>
                   <td>
-                    <button className="btn-confirm">Edit</button>
+                    <button className="btn-confirm">
+                      <Link
+                        to={{
+                          pathname: `/employee/${idEmployee}/contact/edit/${contact.contactId}`,
+                          state: { contact },
+                        }}
+                      >
+                        Editar
+                      </Link>
+                    </button>
                     <button
                       className="btn-confirm"
                       onClick={() => contactDelete(contact.contactId)}
                     >
-                      Delete
+                      Eliminar
                     </button>
                   </td>
                 </td>
@@ -377,17 +406,17 @@ function EmployeeDetail() {
       <div>
         {" "}
         <button className="btn-confirm">
-          <Link to={`../employee/AddContact/${idEmployee}`}>Create</Link>
+          <Link to={`../employee/AddContact/${idEmployee}`}>Crear</Link>
         </button>
       </div>
       <div>
-        <h3>Licenses Table</h3>
+        <h3>Tabla de Licencias</h3>
         <table>
           <thead>
             <tr>
               <th>Id</th>
-              <th>Name</th>
-              <th>Expired</th>
+              <th>Nombre</th>
+              <th>Expiracion</th>
               <th></th>
             </tr>
           </thead>
@@ -399,12 +428,21 @@ function EmployeeDetail() {
                 <td>{new Date(license.expired).toLocaleDateString("en-US")}</td>
                 <td>
                   <td>
-                    <button className="btn-confirm">Edit</button>
+                  <button className="btn-confirm">
+                    <Link
+                      to={{
+                        pathname: `/employee/${idEmployee}/licenses/edit/${license.licensesId}`,
+                        state: { license },
+                      }}
+                    >
+                      Editar
+                    </Link>
+                  </button>
                     <button
                       className="btn-confirm"
                       onClick={() => licensesDelete(license.licensesId)}
                     >
-                      Delete
+                      Eliminar
                     </button>
                   </td>
                 </td>
@@ -417,7 +455,7 @@ function EmployeeDetail() {
       <div>
         {" "}
         <button className="btn-confirm">
-          <Link to={`../employee/AddLicenses/${idEmployee}`}>Create</Link>
+          <Link to={`../employee/AddLicenses/${idEmployee}`}>Crear</Link>
         </button>
       </div>
     </section>

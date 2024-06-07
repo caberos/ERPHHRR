@@ -66,9 +66,9 @@ function AddAccomplishment({ accomplishment }) {
 
   return (
     <div className="add-form">
-      <h2>Create Accomplishment</h2>
+      <h2>Crear Logro</h2>
       <form onSubmit={handleSubmit}>
-        <label>Description</label>
+        <label>Descripcion</label>
         <input
           type="text"
           value={form.description}
@@ -76,7 +76,7 @@ function AddAccomplishment({ accomplishment }) {
           name="description"
           required
         />
-        <label>Date</label>
+        <label>Fecha</label>
         <input
           type="date"
           value={form.date}
@@ -86,10 +86,10 @@ function AddAccomplishment({ accomplishment }) {
         />
         <div>
           <button className="btn-cancel" onClick={closeModal}>
-            Cancel
+            Cancelar
           </button>
           <button className="btn-confirm" type="submit" onClick={handleSubmit}>
-            Submit
+            Enviar
           </button>
         </div>
       </form>

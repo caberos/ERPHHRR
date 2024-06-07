@@ -65,9 +65,9 @@ function AddVacation({ vacation }) {
 
   return (
     <div className="add-form">
-      <h2>Create Vacation</h2>
+      <h2>Crear Vacacion</h2>
       <form onSubmit={handleSubmit}>
-        <label>Reason</label>
+        <label>Razon</label>
         <input
           type="text"
           value={form.reason}
@@ -75,7 +75,7 @@ function AddVacation({ vacation }) {
           name="reason"
           required
         />
-        <label>Duration</label>
+        <label>Duracion</label>
         <input
           type="number"
           value={form.duration}
@@ -83,7 +83,7 @@ function AddVacation({ vacation }) {
           name="duration"
           required
         />
-        <label>Start At</label>
+        <label>Inicia en</label>
         <input
           type="date"
           value={form.startAt}
@@ -91,7 +91,7 @@ function AddVacation({ vacation }) {
           name="startAt"
           required
         />
-        <label>End At</label>
+        <label>Finaliza en</label>
         <input
           type="date"
           value={form.endAt}
@@ -101,10 +101,10 @@ function AddVacation({ vacation }) {
         />
         <div>
           <button className="btn-cancel" onClick={closeModal}>
-            Cancel
+            Cancelar
           </button>
           <button className="btn-confirm" type="submit" onClick={handleSubmit}>
-            Submit
+            Enviar
           </button>
         </div>
       </form>

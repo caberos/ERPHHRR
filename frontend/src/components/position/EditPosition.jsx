@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import { useLocation, useNavigate } from "react-router-dom";
-import { createTraining } from "../../api/requests/trainingRequest";
-
+import {
+  updatePositionRequest,
+  positionGetRequest,
+} from "../../api/requests/positionRequest";
 
 const customStyles = {
   content: {
@@ -25,48 +27,69 @@ const customStyles = {
 
 ReactModal.setAppElement("#root");
 
-function AddTraining({ training }) {
+function EditPosition({ position }) {
   const [modalIsOpen, setIsOpen] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
-  const idEmployee = location.pathname.split("/").pop();
+  const idPosition = location.pathname.split("/").pop();
+
+  const [idEmployee, setIdEmployee] = useState(null);
   const [form, setForm] = useState({
+    positionId: idPosition,
     name: "",
-    type: "",
     description: "",
-    startAt: "",
-    endAt: "",
+    salary: "",
+    employee: { id: "" },
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await positionGetRequest(idPosition);
+        var data = response.data;
+        setIdEmployee(data.employee.id);
+        console.log(idEmployee);
+        console.log(data);
+        setForm({
+            positionId: idPosition,
+            name: "",
+            description: "",
+            salary: "",
+          employee: data.employee,
+        });
+      } catch (error) {
+        console.error("Error fetching position data:", error);
+      }
+    };
+    fetchData();
+  }, [idPosition]);
 
   const handleChange = (event) => {
     setForm({
       ...form,
       [event.target.name]: event.target.value,
-      employee: { id: idEmployee },
-      trainingId: Math.floor(Math.random() * 100)
     });
   };
 
-  function closeModal() {
+  const closeModal = () => {
     setIsOpen(false);
     navigate(-1);
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await createTraining(form);
-      console.log("Training created:", response);
+      const response = await updatePositionRequest(idPosition, form);
+      console.log(response.data);
       closeModal();
     } catch (error) {
-      console.error("Error creating training:", error.message);
+      console.error("Error updating position:", error.message);
     }
-    setForm(false);
   };
 
   return (
     <div className="add-form">
-      <h2>Crear Capacitacion</h2>
+      <h2>Editar Posicion</h2>
       <form onSubmit={handleSubmit}>
         <label>Nombre</label>
         <input
@@ -84,31 +107,29 @@ function AddTraining({ training }) {
           name="description"
           required
         />
-        <label>Tipo</label>
+        <label>Salario</label>
         <input
-          type="text"
-          value={form.address}
+          type="number"
+          value={form.salary}
           onChange={handleChange}
-          name="address"
+          name="salary"
           required
         />
-        <label>Inicio</label>
-        <input
-          type="date"
-          value={form.startAt}
-          onChange={handleChange}
-          name="startAt"
+        <label>Departamento</label>
+        <select
+          value={depSelect}
+          onChange={handleSelect}
+          name="department"
           required
-        />
+        >
+          <option selected>Escojer un Departamento</option>
+          {dep.map((department) => (
+            <option value={department.id}>
+              {department.id} - {department.name}
+            </option>
+          ))}
+        </select>
 
-        <label>Finaliza</label>
-        <input
-          type="date"
-          value={form.endAt}
-          onChange={handleChange}
-          name="endAt"
-          required
-        />
         <div>
           <button className="btn-cancel" onClick={closeModal}>
             Cancelar
@@ -122,4 +143,4 @@ function AddTraining({ training }) {
   );
 }
 
-export default AddTraining;
+export default EditPosition;

@@ -43,27 +43,27 @@ function EquipmentDetail() {
 
   return (
     <section className="employee-detail">
-      <h1>Equipment Detail</h1>
+      <h1>Detalle Equipamiento</h1>
       <article className="employee-data">
         <>
           <div className="data-employee">
             <p>Id: {id}</p>
-            <p>Name: {name}</p>
-            <p>Description: {description}</p>
+            <p>Nombre: {name}</p>
+            <p>Descripcion: {description}</p>
           </div>
         </>
       </article>
      
       <div>
-        <h3>Position Table</h3>
+        <h3>Tabla Posiciones</h3>
         <table>
           <thead>
             <tr>
               <th>Id</th>
-              <th>Name</th>
-              <th>Description</th>
-              <th>employee</th>
-              <th>Salary</th>
+              <th>Nombre</th>
+              <th>Descripcion</th>
+              <th>Empleado</th>
+              <th>Salario</th>
               <th></th>
             </tr>
           </thead>
@@ -82,7 +82,7 @@ function EquipmentDetail() {
       </div>
       <div>
         {" "}
-        <button className="btn-confirm" onClick={closeModal}>Back</button>
+        <button className="btn-confirm" onClick={closeModal}>Atras</button>
       </div>
     </section>
   );

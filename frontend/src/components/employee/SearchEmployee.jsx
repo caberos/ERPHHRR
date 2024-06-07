@@ -13,7 +13,7 @@ function SearchEmployee({ searchValue, HandleSearch }) {
           type="text"
           value={searchValue}
           onChange={handleSubmit}
-          placeholder="Search employee"
+          placeholder="Buscar empleado"
         />
       </form>
     </div>

@@ -7,8 +7,10 @@ function HomePage(){
         /> */}
   
         <h1>
-          Hi you! My name is Nour and I'm really excited to Welcome you to my
-          first website which helps you to manage your personnel in your Company{" "}
+         Bienvenidos al Sistema ERP Recursos humanos
+
+
+         Desarrollador Daniel Francisco Cabero Barrios.
         </h1>
       </div>
     )

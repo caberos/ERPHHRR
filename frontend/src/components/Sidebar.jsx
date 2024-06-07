@@ -55,20 +55,20 @@ export default function Sidebar() {
                   <Link to="/">DashBoard</Link>
                 </MenuItem>
                 <MenuItem icon={<FiUsers />}>
-                  <Link to="/employees">Employee</Link>
+                  <Link to="/employees">Empleado</Link>
                 </MenuItem>
                 <MenuItem icon={<HiPencilAlt />}>
-                  <Link to="/department"> Department</Link>
+                  <Link to="/departments">Departamento</Link>
                 </MenuItem>
                 <MenuItem icon={<HiOutlineCheck />}>
-                  <Link to="/equipments">Equipment</Link>
+                  <Link to="/equipments">Equipamiento</Link>
                 </MenuItem>
                 {/* <MenuItem icon={<BiCog />}>Settings</MenuItem> */}
               </Menu>
             </SidebarContent>
             <SidebarFooter>
               <Menu iconShape="square">
-                <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
+                <MenuItem icon={<FiLogOut />}>Salir</MenuItem>
               </Menu>
             </SidebarFooter>
           </ProSidebar>

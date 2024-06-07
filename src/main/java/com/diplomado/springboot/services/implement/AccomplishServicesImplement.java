@@ -35,8 +35,10 @@ public class AccomplishServicesImplement implements AccomplishmentsServices {
         List<Accomplishments> accomplishmentsList = accomplishmentsRepository.findAll();
         List<AccomplishmentDTO> res = new ArrayList<>();
         for (Accomplishments aux : accomplishmentsList) {
-            if (aux.getEmployee().getId() == employeeId) {
-                res.add(accomplishmentMapper.toDto(aux)) ;
+            if (aux.getEmployee() != null) {
+                if (aux.getEmployee().getId() == employeeId) {
+                    res.add(accomplishmentMapper.toDto(aux));
+                }
             }
         }
         return res;

@@ -34,7 +34,9 @@ export const createAccomplishment = async (newAccomplishment) => {
     }
 };
 export const updateAccomplishment = async (id, newAccomplishment) => {
-    console.log(newAccomplishment);
+    console.log(newAccomplishment.accomplishmentId);
+    
+    //conseguir un metodo que cambie el dia a long
     try {
         const response = await axios.put(`accomplishment/update/${id}`, newAccomplishment, {
             headers: {

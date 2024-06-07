@@ -34,6 +34,22 @@ export const incidentListRequest = async () => {
     }
   };
   
+  export const updateIncidentRequest = async (id, newIncident) => {
+    console.log(newIncident);
+    try {
+        const response = await axios.put(`incident/update/${id}`, newIncident, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+};
+
   export const deleteIncident = async (id) => {
     try {
         const response = await axios.delete(`incident/delete/${id}`);

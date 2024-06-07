@@ -70,7 +70,7 @@ function EvaluationPage() {
                   state: { idEmployee },
                 }}
               >
-                Vacation
+                Vacacion
               </Link>
             </li>
             <li>
@@ -80,7 +80,7 @@ function EvaluationPage() {
                   state: { idEmployee },
                 }}
               >
-                Labor History
+                Historial Laboral
               </Link>
             </li>
             <li>
@@ -90,7 +90,7 @@ function EvaluationPage() {
                   state: { idEmployee },
                 }}
               >
-                Accomplishments
+                Logros
               </Link>
             </li>
             <li>
@@ -100,7 +100,7 @@ function EvaluationPage() {
                   state: { idEmployee },
                 }}
               >
-                Incidents
+                Incidentes
               </Link>
             </li>
             <li>
@@ -110,32 +110,32 @@ function EvaluationPage() {
                   state: { idEmployee },
                 }}
               >
-                Evaluation
+                Evaluacion
               </Link>
             </li>
           </ul>
         </nav>
       </div>
-      <h1>Employee Detail</h1>
+      <h1>Detalle de Empleado</h1>
       <article className="employee-data">
         <>
           <div className="data-employee">
-            <p>Name: {name}</p>
-            <p>Role: {role}</p>
-            <p>Phone: {phone}</p>
-            <p>City: {city}</p>
+            <p>Nombre: {name}</p>
+            <p>Rol: {role}</p>
+            <p>Fono: {phone}</p>
+            <p>Ciudad: {city}</p>
           </div>
         </>
       </article>
       <div>
-        <h3>Evaluations Table</h3>
+        <h3>Tabla de Evaluaciones</h3>
         <table>
           <thead>
             <tr>
-              <th>Year</th>
-              <th>Score</th>
-              <th>Date</th>
-              <th>Comments</th>
+              <th>Año</th>
+              <th>Puntuacion</th>
+              <th>Dia</th>
+              <th>Comentarios</th>
               <th></th>
             </tr>
           </thead>
@@ -148,12 +148,21 @@ function EvaluationPage() {
                 <td>{evaluation.comments}</td>
                 <td>
                   <td>
-                    <button className="btn-cancel">Edit</button>
+                  <button className="btn-confirm">
+                    <Link
+                      to={{
+                        pathname: `/employee/${idEmployee}/evaluation/edit/${evaluation.evaluationId}`,
+                        state: { evaluation },
+                      }}
+                    >
+                      Editar
+                    </Link>
+                  </button>
                     <button
                       className="btn-confirm"
                       onClick={() => handleDelete(evaluation.evaluationId)}
                     >
-                      Delete
+                      Eliminar
                     </button>
                   </td>
                 </td>
@@ -163,8 +172,8 @@ function EvaluationPage() {
         </table>
         <div>
           {" "}
-          <button className="btn-cancel">Back</button>
-          <button className="btn-confirm" ><Link to={`../employee/AddEvaluation/${idEmployee}`}>Create</Link></button>
+          <button className="btn-cancel">Atras</button>
+          <button className="btn-confirm" ><Link to={`../employee/AddEvaluation/${idEmployee}`}>Crear</Link></button>
         </div>
       </div>
     </section>

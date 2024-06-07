@@ -63,9 +63,9 @@ function AddLicenses({ licenses }) {
 
   return (
     <div className="add-form">
-      <h2>Create Licenses</h2>
+      <h2>Crear Licencia</h2>
       <form onSubmit={handleSubmit}>
-        <label>Name</label>
+        <label>Nombre</label>
         <input
           type="text"
           value={form.name}
@@ -73,7 +73,7 @@ function AddLicenses({ licenses }) {
           name="name"
           required
         />
-        <label>Expired</label>
+        <label>Expira</label>
         <input
           type="date"
           value={form.expired}
@@ -83,10 +83,10 @@ function AddLicenses({ licenses }) {
         />
         <div>
           <button className="btn-cancel" onClick={closeModal}>
-            Cancel
+            Cancelar
           </button>
           <button className="btn-confirm" type="submit" onClick={handleSubmit}>
-            Submit
+            Enviar
           </button>
         </div>
       </form>

@@ -89,9 +89,9 @@ function AddPosition({ position }) {
 
   return (
     <div className="add-form">
-      <h2>Create Position</h2>
+      <h2>Crear Posicion</h2>
       <form onSubmit={handleSubmit}>
-        <label>Name</label>
+        <label>Nombre</label>
         <input
           type="text"
           value={form.name}
@@ -99,7 +99,7 @@ function AddPosition({ position }) {
           name="name"
           required
         />
-        <label>Description</label>
+        <label>Descripcion</label>
         <input
           type="text"
           value={form.description}
@@ -107,7 +107,7 @@ function AddPosition({ position }) {
           name="description"
           required
         />
-        <label>Salary</label>
+        <label>Salario</label>
         <input
           type="number"
           value={form.salary}
@@ -115,14 +115,14 @@ function AddPosition({ position }) {
           name="salary"
           required
         />
-        <label>Department</label>
+        <label>Departamento</label>
         <select
           value={depSelect}
           onChange={handleSelect}
           name="department"
           required
         >
-          <option selected>Please choose one option</option>
+          <option selected>Escojer un Departamento</option>
           {dep.map((department) => (
             <option value={department.id}>
               {department.id} - {department.name}
@@ -132,10 +132,10 @@ function AddPosition({ position }) {
 
         <div>
           <button className="btn-cancel" onClick={closeModal}>
-            Cancel
+            Cancelar
           </button>
           <button className="btn-confirm" type="submit" onClick={handleSubmit}>
-            Submit
+            Enviar
           </button>
         </div>
       </form>

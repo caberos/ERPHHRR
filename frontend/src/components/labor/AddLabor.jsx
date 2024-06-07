@@ -65,9 +65,9 @@ function AddLabor({ labor }) {
 
   return (
     <div className="add-form">
-      <h2>Create Labor history</h2>
+      <h2>Crear Historial Laboral</h2>
       <form onSubmit={handleSubmit}>
-        <label>Description</label>
+        <label>Descripcion</label>
         <input
           type="text"
           value={form.description}
@@ -75,7 +75,7 @@ function AddLabor({ labor }) {
           name="description"
           required
         />
-        <label>position</label>
+        <label>Posicion</label>
         <input
           type="number"
           value={form.position}
@@ -83,7 +83,7 @@ function AddLabor({ labor }) {
           name="position"
           required
         />
-        <label>Start At</label>
+        <label>Inicio en:</label>
         <input
           type="date"
           value={form.startAt}
@@ -93,10 +93,10 @@ function AddLabor({ labor }) {
         />
         <div>
           <button className="btn-cancel" onClick={closeModal}>
-            Cancel
+            Cancelar
           </button>
           <button className="btn-confirm" type="submit" onClick={handleSubmit}>
-            Submit
+            Enviar
           </button>
         </div>
       </form>

@@ -66,14 +66,14 @@ function AddEmployee({ employee }) {
   return (
     <div className="add-employee">
       <button className="add-employee-btn" onClick={openModal}>
-        Add Employee
+        Añadir Empleado
       </button>
       <ReactModal
         style={customStyles}
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
       >
-        <h2>Add Employee</h2>
+        <h2>Añadir Empleado</h2>
         <div style={customStyles.scrollContainer}>
           <form onSubmit={handleSubmit}>
             <label>CI</label>
@@ -84,7 +84,7 @@ function AddEmployee({ employee }) {
               name="id"
               required
             />
-            <label>Name</label>
+            <label>Nombre</label>
             <input
               type="text"
               value={form.name}
@@ -92,7 +92,7 @@ function AddEmployee({ employee }) {
               name="name"
               required
             />
-            <label>Birthday</label>
+            <label>Cumpleaños</label>
             <input
               type="date"
               value={form.birthday}
@@ -100,7 +100,7 @@ function AddEmployee({ employee }) {
               name="birthday"
               required
             />
-            <label>Phone number</label>
+            <label>Numero de Telefono</label>
             <input
               type="tel"
               value={form.phone}
@@ -116,7 +116,7 @@ function AddEmployee({ employee }) {
               name="mail"
               required
             />
-            <label>City</label>
+            <label>Ciudad</label>
             <input
               type="text"
               value={form.city}
@@ -124,7 +124,7 @@ function AddEmployee({ employee }) {
               name="city"
               required
             />
-            <label>SupervisorId</label>
+            <label>Supervisor Id</label>
             <input
               type="text"
               value={form.supervisorId}
@@ -132,7 +132,7 @@ function AddEmployee({ employee }) {
               name="supervisorId"
               required
             />
-            <label>Role</label>
+            <label>Rol</label>
             <input
               type="text"
               value={form.role}
@@ -148,7 +148,7 @@ function AddEmployee({ employee }) {
               name="password"
               required
             />
-            <label>Admin</label>
+            <label>Administrador</label>
             <input
               type="Boolean"
               value={form.admin}
@@ -156,7 +156,7 @@ function AddEmployee({ employee }) {
               name="admin"
               required
             />
-            <label>Start to work</label>
+            <label>Inicio de trabajo</label>
             <input
               type="date"
               value={form.startAt}
@@ -168,14 +168,14 @@ function AddEmployee({ employee }) {
         </div>
         <div>
           <button className="btn-cancel" onClick={closeModal}>
-            Cancel
+            Cancelar
           </button>
           <button
             className="btn-confirm"
             type="submit"
             onClick={handleSubmit}
           >
-            Submit
+            Enviar
           </button>
         </div>
       </ReactModal>

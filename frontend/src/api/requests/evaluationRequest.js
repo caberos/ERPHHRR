@@ -33,6 +33,22 @@ export const evaluationListRequest = async () => {
       throw error;
     }
   };
+
+  export const updateEvaluationRequest = async (id, newEvaluation) => {
+    console.log(newEvaluation);
+    try {
+        const response = await axios.put(`evaluation/update/${id}`, newEvaluation, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+};
   
   export const deleteEvaluation = async (id) => {
     try {

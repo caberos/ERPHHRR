@@ -34,6 +34,22 @@ export const createVacation = async (newVacation) => {
     }
 };
 
+export const updateVacationRequest = async (id, newVacation) => {
+    console.log(newVacation);
+    try {
+        const response = await axios.put(`vacation/update/${id}`, newVacation, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+};
+
 export const deleteVacation = async (id) => {
     try {
         const response = await axios.delete(`vacation/delete/${id}`);

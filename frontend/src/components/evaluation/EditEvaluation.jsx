@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import { useLocation, useNavigate } from "react-router-dom";
-import { createTraining } from "../../api/requests/trainingRequest";
-
+import {
+  updateEvaluationRequest,
+  evaluationGetRequest,
+} from "../../api/requests/evaluationRequest";
 
 const customStyles = {
   content: {
@@ -25,88 +27,112 @@ const customStyles = {
 
 ReactModal.setAppElement("#root");
 
-function AddTraining({ training }) {
+function EditEvaluation({ evaluation }) {
   const [modalIsOpen, setIsOpen] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
-  const idEmployee = location.pathname.split("/").pop();
+  const idEvaluation = location.pathname.split("/").pop();
+
+  const [idEmployee, setIdEmployee] = useState(null);
   const [form, setForm] = useState({
-    name: "",
-    type: "",
-    description: "",
-    startAt: "",
-    endAt: "",
+    evaluationId: idEvaluation,
+    year: "",
+    timeScale: "",
+    comments: "",
+    score: "",
+    evalTime: "",
+    employee: { id: "" },
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await evaluationGetRequest(idEvaluation);
+        var data = response.data;
+        setIdEmployee(data.employee.id);
+        console.log(idEmployee);
+        console.log(data);
+        setForm({
+          evaluationId: idEvaluation,
+          year: "",
+          timeScale: "",
+          comments: "",
+          score: "",
+          evalTime: "",
+          employee: data.employee,
+        });
+      } catch (error) {
+        console.error("Error fetching evaluation data:", error);
+      }
+    };
+    fetchData();
+  }, [idEvaluation]);
 
   const handleChange = (event) => {
     setForm({
       ...form,
       [event.target.name]: event.target.value,
-      employee: { id: idEmployee },
-      trainingId: Math.floor(Math.random() * 100)
     });
   };
 
-  function closeModal() {
+  const closeModal = () => {
     setIsOpen(false);
     navigate(-1);
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await createTraining(form);
-      console.log("Training created:", response);
+      const response = await updateEvaluationRequest(idEvaluation, form);
+      console.log(response.data);
       closeModal();
     } catch (error) {
-      console.error("Error creating training:", error.message);
+      console.error("Error updating Contact:", error.message);
     }
-    setForm(false);
   };
 
   return (
     <div className="add-form">
-      <h2>Crear Capacitacion</h2>
+      <h2>Editar Evaluacion</h2>
       <form onSubmit={handleSubmit}>
-        <label>Nombre</label>
+        <label>Comentario</label>
         <input
           type="text"
-          value={form.name}
+          value={form.comments}
           onChange={handleChange}
-          name="name"
+          name="comment"
           required
         />
-        <label>Descripcion</label>
+        <label>Puntuacion</label>
         <input
-          type="text"
-          value={form.description}
+          type="number"
+          value={form.score}
           onChange={handleChange}
-          name="description"
+          name="score"
           required
         />
-        <label>Tipo</label>
+        <label>Año</label>
         <input
-          type="text"
-          value={form.address}
+          type="number"
+          value={form.year}
           onChange={handleChange}
-          name="address"
+          name="year"
           required
         />
-        <label>Inicio</label>
+        <label>Tiempo de Evaluacion</label>
         <input
           type="date"
-          value={form.startAt}
+          value={form.evalTime}
           onChange={handleChange}
-          name="startAt"
+          name="eval_time"
           required
         />
-
-        <label>Finaliza</label>
+        <label>Escala de Tiempo</label>
         <input
           type="date"
-          value={form.endAt}
+          value={form.time}
           onChange={handleChange}
-          name="endAt"
+          name="time"
           required
         />
         <div>
@@ -122,4 +148,4 @@ function AddTraining({ training }) {
   );
 }
 
-export default AddTraining;
+export default EditEvaluation;

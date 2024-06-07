@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import { useLocation, useNavigate } from "react-router-dom";
-import { createTraining } from "../../api/requests/trainingRequest";
-
+import {
+  updateVacationRequest,
+  vacationGetRequest,
+} from "../../api/requests/vacationRequest";
 
 const customStyles = {
   content: {
@@ -25,74 +27,89 @@ const customStyles = {
 
 ReactModal.setAppElement("#root");
 
-function AddTraining({ training }) {
+function EditVacation({ vacation }) {
   const [modalIsOpen, setIsOpen] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
-  const idEmployee = location.pathname.split("/").pop();
+  const idVacation = location.pathname.split("/").pop();
+
+  const [idEmployee, setIdEmployee] = useState(null);
   const [form, setForm] = useState({
-    name: "",
-    type: "",
-    description: "",
+    vacationId: idVacation,
+    reason: "",
+    duration: "",
     startAt: "",
     endAt: "",
+    employee: { id: "" },
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await vacationGetRequest(idVacation);
+        var data = response.data;
+        setIdEmployee(data.employee.id);
+        console.log(idEmployee);
+        console.log(data);
+        setForm({
+            vacationId: idVacation,
+            reason: "",
+            duration: "",
+            startAt: "",
+            endAt: "",
+          employee: data.employee,
+        });
+      } catch (error) {
+        console.error("Error fetching vacation data:", error);
+      }
+    };
+    fetchData();
+  }, [idVacation]);
 
   const handleChange = (event) => {
     setForm({
       ...form,
       [event.target.name]: event.target.value,
-      employee: { id: idEmployee },
-      trainingId: Math.floor(Math.random() * 100)
     });
   };
 
-  function closeModal() {
+  const closeModal = () => {
     setIsOpen(false);
     navigate(-1);
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await createTraining(form);
-      console.log("Training created:", response);
+      const response = await updateVacationRequest(idVacation, form);
+      console.log(response.data);
       closeModal();
     } catch (error) {
-      console.error("Error creating training:", error.message);
+      console.error("Error updating vacation:", error.message);
     }
-    setForm(false);
   };
 
   return (
     <div className="add-form">
-      <h2>Crear Capacitacion</h2>
+      <h2>Editar Vacacion</h2>
       <form onSubmit={handleSubmit}>
-        <label>Nombre</label>
+        <label>Razon</label>
         <input
           type="text"
-          value={form.name}
+          value={form.reason}
           onChange={handleChange}
-          name="name"
+          name="reason"
           required
         />
-        <label>Descripcion</label>
+        <label>Duracion</label>
         <input
-          type="text"
-          value={form.description}
+          type="number"
+          value={form.duration}
           onChange={handleChange}
-          name="description"
+          name="duration"
           required
         />
-        <label>Tipo</label>
-        <input
-          type="text"
-          value={form.address}
-          onChange={handleChange}
-          name="address"
-          required
-        />
-        <label>Inicio</label>
+        <label>Inicia en</label>
         <input
           type="date"
           value={form.startAt}
@@ -100,8 +117,7 @@ function AddTraining({ training }) {
           name="startAt"
           required
         />
-
-        <label>Finaliza</label>
+        <label>Finaliza en</label>
         <input
           type="date"
           value={form.endAt}
@@ -122,4 +138,4 @@ function AddTraining({ training }) {
   );
 }
 
-export default AddTraining;
+export default EditVacation;

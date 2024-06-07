@@ -24,7 +24,7 @@ function EquipmentPage() {
     <div>
       <div className="div1"></div>
       <div>
-        <h2>Equipment List</h2>
+        <h2>Lista de Equipamiento</h2>
         <ul className="Employee-list">
           {equipments.map((equip) => (
             <li key={equip.id}>

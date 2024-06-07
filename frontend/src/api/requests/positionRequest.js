@@ -32,6 +32,22 @@ export const positionListRequest = async () => {
       throw error;
     }
   };
+
+  export const updatePositionRequest = async (id, newPosition) => {
+    console.log(newPosition);
+    try {
+        const response = await axios.put(`position/update/${id}`, newPosition, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+};
   
   export const deletePosition = async (id) => {
     try {

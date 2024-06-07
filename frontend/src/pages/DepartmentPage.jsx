@@ -24,7 +24,7 @@ function DepartmentPage() {
     <div>
       <div className="div1"></div>
       <div>
-        <h2>Department List</h2>
+        <h2>Lista de Departamento</h2>
         <ul className="Employee-list">
           {departments.map((der) => (
             <li key={der.id}>

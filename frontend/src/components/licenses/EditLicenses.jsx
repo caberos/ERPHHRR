@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import { useLocation, useNavigate } from "react-router-dom";
-import { createTraining } from "../../api/requests/trainingRequest";
-
+import {
+  updateLicRequest,
+  licensesGetRequest,
+} from "../../api/requests/licensesRequest";
 
 const customStyles = {
   content: {
@@ -25,48 +27,67 @@ const customStyles = {
 
 ReactModal.setAppElement("#root");
 
-function AddTraining({ training }) {
+function EditLicenses({ licenses }) {
   const [modalIsOpen, setIsOpen] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
-  const idEmployee = location.pathname.split("/").pop();
+  const idLicenses = location.pathname.split("/").pop();
+
+  const [idEmployee, setIdEmployee] = useState(null);
   const [form, setForm] = useState({
+    licensesId: idLicenses,
     name: "",
-    type: "",
-    description: "",
-    startAt: "",
-    endAt: "",
+    expired: "",
+    employee: { id: "" },
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await licensesGetRequest(idLicenses);
+        var data = response.data;
+        setIdEmployee(data.employee.id);
+        console.log(idEmployee);
+        console.log(data);
+        setForm({
+          licensesId: idLicenses,
+          name: "",
+          expired: "",
+          employee: data.employee,
+        });
+      } catch (error) {
+        console.error("Error fetching licenses data:", error);
+      }
+    };
+    fetchData();
+  }, [idLicenses]);
 
   const handleChange = (event) => {
     setForm({
       ...form,
       [event.target.name]: event.target.value,
-      employee: { id: idEmployee },
-      trainingId: Math.floor(Math.random() * 100)
     });
   };
 
-  function closeModal() {
+  const closeModal = () => {
     setIsOpen(false);
     navigate(-1);
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await createTraining(form);
-      console.log("Training created:", response);
+      const response = await updateLicRequest(idLicenses, form);
+      console.log(response.data);
       closeModal();
     } catch (error) {
-      console.error("Error creating training:", error.message);
+      console.error("Error updating licenses:", error.message);
     }
-    setForm(false);
   };
 
   return (
     <div className="add-form">
-      <h2>Crear Capacitacion</h2>
+      <h2>Editar Licencia</h2>
       <form onSubmit={handleSubmit}>
         <label>Nombre</label>
         <input
@@ -76,37 +97,12 @@ function AddTraining({ training }) {
           name="name"
           required
         />
-        <label>Descripcion</label>
-        <input
-          type="text"
-          value={form.description}
-          onChange={handleChange}
-          name="description"
-          required
-        />
-        <label>Tipo</label>
-        <input
-          type="text"
-          value={form.address}
-          onChange={handleChange}
-          name="address"
-          required
-        />
-        <label>Inicio</label>
+        <label>Expira</label>
         <input
           type="date"
-          value={form.startAt}
+          value={form.expired}
           onChange={handleChange}
-          name="startAt"
-          required
-        />
-
-        <label>Finaliza</label>
-        <input
-          type="date"
-          value={form.endAt}
-          onChange={handleChange}
-          name="endAt"
+          name="expired"
           required
         />
         <div>
@@ -122,4 +118,4 @@ function AddTraining({ training }) {
   );
 }
 
-export default AddTraining;
+export default EditLicenses;

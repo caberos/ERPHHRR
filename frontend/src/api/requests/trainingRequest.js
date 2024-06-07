@@ -33,6 +33,22 @@ export const trainingListRequest = async () => {
       throw error;
     }
   };
+
+  export const updateTrainingRequest = async (id, newTraining) => {
+    console.log(newTraining);
+    try {
+        const response = await axios.put(`training/update/${id}`, newTraining, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+};
   
   export const deleteTraining = async (id) => {
     try {

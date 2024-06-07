@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import { useLocation, useNavigate } from "react-router-dom";
-import { createTraining } from "../../api/requests/trainingRequest";
-
+import {
+  updateTrainingRequest,
+  trainingGetRequest,
+} from "../../api/requests/trainingRequest";
 
 const customStyles = {
   content: {
@@ -25,48 +27,73 @@ const customStyles = {
 
 ReactModal.setAppElement("#root");
 
-function AddTraining({ training }) {
+function EditTraining({ training }) {
   const [modalIsOpen, setIsOpen] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
-  const idEmployee = location.pathname.split("/").pop();
+  const idTraining = location.pathname.split("/").pop();
+
+  const [idEmployee, setIdEmployee] = useState(null);
   const [form, setForm] = useState({
+    trainingId: idTraining,
     name: "",
     type: "",
     description: "",
     startAt: "",
     endAt: "",
+    employee: { id: "" },
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await trainingGetRequest(idTraining);
+        var data = response.data;
+        setIdEmployee(data.employee.id);
+        console.log(idEmployee);
+        console.log(data);
+        setForm({
+            trainingId: idTraining,
+            name: "",
+            type: "",
+            description: "",
+            startAt: "",
+            endAt: "",
+          employee: data.employee,
+        });
+      } catch (error) {
+        console.error("Error fetching training data:", error);
+      }
+    };
+    fetchData();
+  }, [idTraining]);
 
   const handleChange = (event) => {
     setForm({
       ...form,
       [event.target.name]: event.target.value,
-      employee: { id: idEmployee },
-      trainingId: Math.floor(Math.random() * 100)
     });
   };
 
-  function closeModal() {
+  const closeModal = () => {
     setIsOpen(false);
     navigate(-1);
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await createTraining(form);
-      console.log("Training created:", response);
+      const response = await updateTrainingRequest(idTraining, form);
+      console.log(response.data);
       closeModal();
     } catch (error) {
-      console.error("Error creating training:", error.message);
+      console.error("Error updating training:", error.message);
     }
-    setForm(false);
   };
 
   return (
     <div className="add-form">
-      <h2>Crear Capacitacion</h2>
+      <h2>Editar Capacitacion</h2>
       <form onSubmit={handleSubmit}>
         <label>Nombre</label>
         <input
@@ -122,4 +149,4 @@ function AddTraining({ training }) {
   );
 }
 
-export default AddTraining;
+export default EditTraining;

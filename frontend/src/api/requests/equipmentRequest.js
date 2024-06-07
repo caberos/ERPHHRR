@@ -33,6 +33,22 @@ export const equipmentListRequest = async () => {
       throw error;
     }
   };
+
+  export const updateEquipmentRequest = async (id, newEquipment) => {
+    console.log(newEquipment);
+    try {
+        const response = await axios.put(`equipment/update/${id}`, newEquipment, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+};
   
   export const deleteEquipment = async (id) => {
     try {

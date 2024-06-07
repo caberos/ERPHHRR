@@ -43,6 +43,22 @@ export const createEmployee = async (newEmployee) => {
   }
 };
 
+export const updateEmployeeRequest = async (id, newEmployee) => {
+  console.log(newEmployee);
+  try {
+      const response = await axios.put(`employee/update/${id}`, newEmployee, {
+          headers: {
+              'Content-Type': 'application/json',
+          }
+      });
+      console.log(response.data);
+      return response.data;
+  } catch (error) {
+      console.log(error);
+      throw error;
+  }
+};
+
 export const deleteEmployee = async (id) => {
   try {
     const response = await axios.delete(`employee/delete/${id}`);
